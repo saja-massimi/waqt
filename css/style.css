@@ -2710,7 +2710,7 @@ fieldset:disabled a.btn {
 
 .btn-primary {
   color: red;
-  background-color: yellow !important;
+  background-color: red !important;
   border-color: var(--primary);
 }
 
@@ -2725,7 +2725,7 @@ fieldset:disabled a.btn {
   color: #212529;
   background-color: var(--primary);
   border-color: var(--primary);
-  box-shadow: 0 0 0 0.2rem rgba(222, 185, 50, 0.5);
+  box-shadow: 0 0 0 0.2rem rgba(179, 42, 30, 0.5);
 }
 
 .btn-primary.disabled,
@@ -2746,7 +2746,7 @@ fieldset:disabled a.btn {
 .btn-primary:not(:disabled):not(.disabled):active:focus,
 .btn-primary:not(:disabled):not(.disabled).active:focus,
 .show>.btn-primary.dropdown-toggle:focus {
-  box-shadow: 0 0 0 0.2rem rgba(222, 185, 50, 0.5);
+  box-shadow: 0 0 0 0.2rem rgba(200, 43, 40, 0.5);
 }
 
 .btn-secondary {
