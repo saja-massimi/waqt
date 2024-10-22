@@ -1,61 +1,67 @@
 <!-- Navbar Start -->
-<div class="container-fluid bg-dark mb-30">
+<div class="container-fluid bg-info text-white mb-30">
     <div class="row px-xl-5">
-        <div class="col-lg-9">
-
-            <nav id="nav_bg" class="navbar navbar-expand-lg bg-dark navbar-dark py-3 py-lg-0 px-0">
-                <a href="" class="text-decoration-none d-block d-lg-none">
-                    <span class="h1 text-uppercase text-dark bg-light px-2">Multi</span>
-                    <span class="h1 text-uppercase text-light bg-primary px-2 ml-n1">Shop</span>
+        <div class="col-lg-12">
+            <nav class="navbar navbar-expand-lg  navbar-dark py-3 py-lg-0">
+                <!-- Logo aligned to the left -->
+                <a class="navbar-brand" href="#">
+                    <img src="../img/logo1.png" width="50" height="50" class="d-inline" alt="logo">
+                    WAQT
                 </a>
-                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                
+                <!-- Toggler Button for Mobile Menu -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
-
-
-                    <div class="navbar-nav mr-auto py-0">
+                
+                <!-- Navbar Collapse -->
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <!-- Spacer for logo on the left -->
+                    <div class="navbar-nav mr-auto"></div>
+                    
+                    <!-- Navbar Links (Centered) -->
+                    <div class="navbar-nav mx-auto">
                         <a href="index.html" class="nav-item nav-link active">Home</a>
                         <a href="shop.html" class="nav-item nav-link">Shop</a>
-
+                        
+                        <!-- Pages Dropdown -->
                         <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages <i class="fa fa-angle-down mt-1"></i></a>
+                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
                             <div class="dropdown-menu bg-primary rounded-0 border-0 m-0">
                                 <a href="cart.php" class="dropdown-item">Shopping Cart</a>
                                 <a href="checkout.php" class="dropdown-item">Checkout</a>
                             </div>
                         </div>
-
+                        
+                        <!-- Categories Dropdown -->
                         <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Categories <i class="fa fa-angle-down mt-1"></i></a>
+                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Categories</a>
                             <div class="dropdown-menu bg-primary rounded-0 border-0 m-0">
-                                <a href="cart.php" class="dropdown-item">Women</a>
-                                <a href="checkout.php" class="dropdown-item">Men</a>
+                                <a href="#" class="dropdown-item">Women</a>
+                                <a href="#" class="dropdown-item">Men</a>
                             </div>
                         </div>
-                        <a href="contact.html" class="nav-item nav-link">Contact</a>
-                        <a href="contact.html" class="nav-item nav-link">About Us</a>
-
+                        <a href="contact.php" class="nav-item nav-link">Contact</a>
+                        <a href="aboutus.php" class="nav-item nav-link">About Us</a>
                     </div>
 
-                    <div class="navbar-nav ml-auto py-0 d-none d-lg-block">
-                        <a href="" class="btn px-0">
-                            <i class="fas fa-heart text-primary"></i>
-                            <span class="badge text-secondary border border-secondary rounded-circle" style="padding-bottom: 2px;">0</span>
+                    <!-- Right-side Icons -->
+                    <div class="navbar-nav ml-auto d-flex align-items-center">
+                        <a href="#" class="btn">
+                            <i class="fas fa-heart  text-dark"></i>
+                            <span class="badge bg-secondary rounded-circle">0</span>
                         </a>
-
-                        <a href="" class="btn px-0 ml-3">
-                            <i class="fas fa-shopping-cart text-primary"></i>
-                            <span class="badge text-secondary border border-secondary rounded-circle" style="padding-bottom: 2px;">0</span>
+                        <a href="#" class="btn mx-2">
+                            <i class="fas fa-shopping-cart  text-dark"></i>
+                            <span class="badge bg-secondary rounded-circle">0</span>
                         </a>
-
-                        <a href="" class="btn px-0 ml-3">
-                            <i class="fas fa-user text-primary"></i>
+                        <a href="#" class="btn">
+                            <i class="fas fa-user  text-dark"></i>
                         </a>
-
                     </div>
                 </div>
             </nav>
         </div>
     </div>
 </div>
+<!-- Navbar End -->
