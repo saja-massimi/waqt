@@ -1,6 +1,6 @@
 <!-- Navbar Start -->
-<div class="container-fluid bg-info text-white mb-30">
-    <div class="row px-xl-5">
+<div class="container-fluid bg-white text-dark mb-30">
+    <div class="row px-xl-5 text-dark">
         <div class="col-lg-12">
             <nav class="navbar navbar-expand-lg  navbar-dark py-3 py-lg-0">
                 <!-- Logo aligned to the left -->
