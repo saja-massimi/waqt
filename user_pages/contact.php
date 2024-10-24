@@ -32,12 +32,12 @@
         
     
         body {
-        background: #fff;
+        background: white;
          
         }
     
         .content h2 {
-          color: #000;
+          color: red;
           font-size: 40px;
           text-align: center;
           margin-bottom: 20px;
@@ -63,7 +63,7 @@
         }
     
         .field .item::placeholder {
-          color: rgba(255, 255, 255, 0.3);
+          color: black;
         }
     
         .field .error-txt {
