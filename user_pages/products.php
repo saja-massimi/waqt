@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <?php
 include '../user_pages/models/dbh.php';
 include '../user_pages/models/productsModel.php';
@@ -7,24 +8,12 @@ include '../user_pages/controllers/productsController.php';
 
 $products = new productsController();
 $allProducts = $products->showAllProducts();
+$brands = $products->AllBrands();
+$materials = $products->AllMaterials();
 
 ?>
 
-<head>
-    <meta charset="utf-8">
-    <title>WAQT</title>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <meta content="products watches" name="keywords">
-    <meta content="all watches" name="description">
-    <link href="../img/logo1.png" rel="icon">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-    <link href="../lib/animate/animate.min.css" rel="stylesheet">
-    <link href="../lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-    <link href="../css/style.css" rel="stylesheet">
-
-</head>
+<?php include '../widgets/head.php'; ?>
 
 <body>
 
@@ -59,11 +48,13 @@ $allProducts = $products->showAllProducts();
                 <h5 class="section-title position-relative text-uppercase mb-3">
                     <span class="bg-secondary pr-3">Filter by price</span>
                 </h5>
+
                 <div class="bg-light p-4 mb-30">
-                    <form method="GET" action="">
-                        <div class="slider-label">Price: <span id="priceRangeValue">50 JD</span></div>
-                        <input type="range" class="form-range" name="priceRange" id="priceRange" min="0" max="1000" value="50" step="10">
+                    <div class="slider-label">Price: <span id="priceRangeValue">50 JD</span></div>
+                    <input type="range" class="form-range" name="priceRange" id="priceRange" min="0" max="1000" value="50" step="10">
                 </div>
+
+
                 <!-- Price Filter End -->
 
                 <!-- Category Filter Start -->
@@ -91,10 +82,7 @@ $allProducts = $products->showAllProducts();
                     <span class="bg-secondary pr-3">Filter by brand</span>
                 </h5>
                 <div class="bg-light p-4 mb-30">
-                    <?php
-                    // Fetch brands dynamically from the database
-                    $brands = $db->query("SELECT DISTINCT watch_brand FROM watches")->fetchAll();
-                    ?>
+
                     <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
                         <input type="checkbox" name="brand[]" class="custom-control-input" id="allBrands" value="all" checked>
                         <label class="custom-control-label" for="allBrands">All Brands</label>
@@ -113,10 +101,9 @@ $allProducts = $products->showAllProducts();
                     <span class="bg-secondary pr-3">Filter by Strap Material</span>
                 </h5>
                 <div class="bg-light p-4 mb-30">
-                    <?php
-                    // Fetch strap materials dynamically from the database
-                    $materials = $db->query("SELECT DISTINCT strap_material FROM watches")->fetchAll();
-                    ?>
+
+
+
                     <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
                         <input type="checkbox" name="material[]" class="custom-control-input" id="allMaterials" value="all" checked>
                         <label class="custom-control-label" for="allMaterials">All Materials</label>
@@ -130,9 +117,7 @@ $allProducts = $products->showAllProducts();
                 </div>
                 <!-- Strap Material Filter End -->
 
-                <!-- Submit Button -->
-                <button type="submit" class="btn btn-primary w-100">Apply Filters</button>
-                </form>
+
 
             </div>
             <!-- Shop Sidebar End -->
@@ -141,9 +126,7 @@ $allProducts = $products->showAllProducts();
 
             <!-- Shop Product Start -->
             <div class="col-lg-9 col-md-8">
-
                 <div class="row pb-3">
-
                     <div class="col-12 pb-1">
                         <div class="d-flex align-items-center justify-content-between mb-4">
                             <div>
@@ -170,34 +153,33 @@ $allProducts = $products->showAllProducts();
                             </div>
                         </div>
                     </div>
+                    <div id="productList">
+                        <?php
 
-                    <?php
-
-                    foreach ($allProducts as $product) { ?>
-                        <div class="col-lg-4 col-md-6 col-sm-6 pb-1">
-                            <div class="product-item bg-light mb-4">
-                                <div class="product-img position-relative overflow-hidden">
-                                    <img class="img-fluid w-100" src="<?php echo $product['watch_img']; ?>" alt="<?php echo $product['watch_name']; ?>">
-                                    <div class="product-action">
-                                        <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a>
-                                        <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
-                                        <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-sync-alt"></i></a>
-                                        <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-search"></i></a>
+                        foreach ($allProducts as $product) { ?>
+                            <div class="col-lg-4 col-md-6 col-sm-6 pb-1">
+                                <div class="product-item bg-light mb-4">
+                                    <div class="product-img position-relative overflow-hidden">
+                                        <img class="img-fluid w-100" src="<?php echo $product['watch_img']; ?>" alt="<?php echo $product['watch_name']; ?>">
+                                        <div class="product-action">
+                                            <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a>
+                                            <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
+                                            <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-sync-alt"></i></a>
+                                            <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-search"></i></a>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="text-center py-4">
-                                    <a class="h6 text-decoration-none text-truncate" href=""><?php echo $product['watch_name']; ?></a>
-                                    <div class="d-flex align-items-center justify-content-center mt-2">
-                                        <h5><?php echo $product['watch_price']; ?> JOD</h5>
-                                        <h6 class="text-muted ml-2"><del><?php echo $product['watch_price'] - 10; ?> JOD</del></h6>
-                                    </div>
+                                    <div class="text-center py-4">
+                                        <a class="h6 text-decoration-none text-truncate" href=""><?php echo $product['watch_name']; ?></a>
+                                        <div class="d-flex align-items-center justify-content-center mt-2">
+                                            <h5><?php echo $product['watch_price']; ?> JOD</h5>
+                                            <h6 class="text-muted ml-2"><del><?php echo $product['watch_price'] - 10; ?> JOD</del></h6>
+                                        </div>
 
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    <?php } ?>
-
-
+                        <?php } ?>
+                    </div>
 
                     <div class="col-12">
                         <nav>
@@ -213,6 +195,8 @@ $allProducts = $products->showAllProducts();
                 </div>
             </div>
             <!-- Shop Product End -->
+
+
         </div>
     </div>
     <!-- Shop End -->
@@ -236,19 +220,10 @@ $allProducts = $products->showAllProducts();
     <!-- Contact Javascript File -->
     <script src="mail/jqBootstrapValidation.min.js"></script>
     <script src="mail/contact.js"></script>
-
-
-    <script>
-        const priceRange = document.getElementById('priceRange');
-        const priceRangeValue = document.getElementById('priceRangeValue');
-
-        // Update the price label as the slider is moved
-        priceRange.addEventListener('input', function() {
-            priceRangeValue.innerHTML = this.value.toString() + ' JD';
-        });
-    </script>
+    <script src="./fliteringProducts.js"></script>
     <!-- Template Javascript -->
     <script src="../js/main.js"></script>
+
 </body>
 
 </html>
