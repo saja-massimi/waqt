@@ -13,4 +13,34 @@ class productsController extends productsModel
             return "No products found.";
         }
     }
+
+    public function AllBrands(){
+
+    $results = $this->getAllBrands();
+
+    if (!empty($results)) 
+        return $results;
+    else 
+        return "No Brands found.";
+    
+
+}
+
+
+    public function AllMaterials(){
+        $results = $this->getAllMaterials();
+
+    if (!empty($results)) {
+        return $results;
+    } else {
+        return "No Material found.";
+    }
+
+    
+    }
+
+
+
+
+
 }
