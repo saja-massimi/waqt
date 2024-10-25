@@ -15,18 +15,4 @@ $dbconnection=new PDO ($dsn,$username,$password);
 echo $error;
 }
 
-
-?>
-
-<?php
-$file_image=$_FILES['img']['name'];
-$tempname=$_FILES['img']['tmp_name'];
-
-
-
-
-
-
-
-
 ?>

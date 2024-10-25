@@ -43,6 +43,10 @@
                         </div>
                         <a href="contact.php" class="nav-item nav-link">Contact</a>
                         <a href="aboutus.php" class="nav-item nav-link">About Us</a>
+                        <a href="customer_profile.php" class="nav-item nav-link">Profile</a>
+                        
+                        
+                        
                     </div>
 
                     <!-- Right-side Icons -->
