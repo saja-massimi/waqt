@@ -48,7 +48,7 @@
   position: relative;
   z-index: 3;
   text-align: center;
-  color: #800000;
+  color: white;
   top: 50%;
   transform: translateY(-50%);
   padding: 0 15px;
@@ -111,7 +111,7 @@
   <div class="landing-content">
     <h1>Welcome to WAQT</h1>
     <p>Waqt offers elegant, <br>high-quality watches blending classic craftsmanship with modern design, <br>prioritizing customer satisfaction and personalized service.</p>
-    <a href="index.php" class="btn btn-outline-light py-2 px-4 mt-3 animate__animated animate__fadeInUp">Discover it</a>
+    <a href="index.php" class="btn btn-outline-light py-2 px-4 mt-3 animate__animated animate__fadeInUp">Shop Now </a>
   </div>
 </section>
 

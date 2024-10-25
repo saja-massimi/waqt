@@ -38,6 +38,89 @@
             max-height: 100%;
             object-fit: contain;
         }
+                /* Full screen landing section with video background */
+@import url("https://fonts.googleapis.com/css?family=Josefin+Sans:200,300,400,500,600,700|Roboto:100,300,400,500,700&display=swap");
+
+*{ 
+  font-family:"Josefin Sans",sans-serif;
+}
+.landing-section {
+  position: relative;
+  height: 90vh;
+  width: 100%;
+  overflow: hidden;
+  top:-29px;
+  
+}
+
+#landing-video {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  object-fit: cover;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4); /* Semi-transparent overlay */
+  z-index: 2;
+}
+
+.landing-content {
+  position: relative;
+  z-index: 3;
+  text-align: center;
+  color: white;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 0 15px;
+}
+
+.landing-content h1 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.landing-content p {
+  font-size: 1rem;
+  margin-bottom: 30px;
+}
+
+/* .landing-content .btn {
+  background: linear-gradient(45deg, #16161a, #ff2020, #0b1c39);
+  border: none;
+  padding: 12px 30px;
+  font-size: 1.1rem;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.landing-content .btn:hover {
+  background: linear-gradient(45deg, #ff2020, #0b1c39, #16161a);
+  transform: scale(1.05);
+} */
+
+@media (max-width: 768px) {
+  .landing-content h1 {
+    font-size: 2.5rem;
+  }
+
+  .landing-content p {
+    font-size: 1.2rem;
+  }
+}
+   
+     
     </style>
 </head>
 <!-- Navbar Start -->
@@ -63,9 +146,9 @@
 
                     <!-- Navbar Links (Centered) -->
                     <div class="navbar-nav mx-auto">
-                        <a href="index.html" class="nav-item nav-link active">Home</a>
-                        <a href="shop.html" class="nav-item nav-link">Shop</a>
-
+                        <a href="index.php" class="nav-item nav-link active">Home</a>
+                        <a href="shop.php" class="nav-item nav-link">Shop</a>
+                        
                         <!-- Pages Dropdown -->
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
@@ -85,6 +168,10 @@
                         </div>
                         <a href="contact.php" class="nav-item nav-link">Contact</a>
                         <a href="aboutus.php" class="nav-item nav-link">About Us</a>
+                        <a href="customer_profile.php" class="nav-item nav-link">Profile</a>
+                        
+                        
+                        
                     </div>
 
                     <!-- Right-side Icons -->

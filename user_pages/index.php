@@ -3,7 +3,20 @@
 
 
 <body>
+<section class="landing-section">
+  <video autoplay muted loop id="landing-video">
+    <source src="../img/video/landing_page.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
 
+  <div class="overlay"></div>
+
+  <div class="landing-content">
+    <h1>Welcome to WAQT</h1>
+    <p>Waqt offers elegant, <br>high-quality watches blending classic craftsmanship with modern design, <br>prioritizing customer satisfaction and personalized service.</p>
+    <a href="index.php" class="btn btn-outline-light py-2 px-4 mt-3 animate__animated animate__fadeInUp">Shop Now</a>
+  </div>
+</section>
     <!-- Navbar End -->
 
     <!-- Carousel Start -->
