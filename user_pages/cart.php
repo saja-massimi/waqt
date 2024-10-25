@@ -1,22 +1,4 @@
 <?php  include("../widgets/navbar.php");?>
-    <!-- Navbar End -->
-
-
-    <!-- Breadcrumb Start -->
-    <div class="container-fluid">
-        <div class="row px-xl-5">
-            <div class="col-12">
-                <nav class="breadcrumb bg-light mb-30">
-                    <a class="breadcrumb-item text-dark" href="#">Home</a>
-                    <a class="breadcrumb-item text-dark" href="#">Shop</a>
-                    <span class="breadcrumb-item active">Shopping Cart</span>
-                </nav>
-            </div>
-        </div>
-    </div>
-    <!-- Breadcrumb End -->
-
-
     <!-- Cart Start -->
     <div class="container-fluid">
         <div class="row px-xl-5">
@@ -32,26 +14,29 @@
                         </tr>
                     </thead>
                     
-            <?php
-            require "dbconnection.php";
-                $query="SELECT * FROM `carts`" ;
-                $carts=->query($query);
-                if($users->rowCount()==0){
-                echo ("empty table");
-                }else{
-                    foreach($users as $user)
-              {  echo "  <tr>
-                <td>$user[user_id] </td>
-                <td>$user[user_name] </td>
-                <td>$user[user_email] </td>
-                <td>$user[user_mobile] </td>
-                <td><img src='./{$user['image']}' alt= srcset= style=width:100px> </td>
-                 <td><a href='./feature/update_page.php?id=$user[user_id]' class='btn btn-primary'>Edit</a>
-                 </td>
-                 <td><a href='./feature/delete.php?id=$user[user_id]' class='btn btn-danger'>Delete</a>  </td>
-               </tr> ";
-}
-                }?>
+            
+            <!-- // require "dbconnection.php";
+            //     $query="SELECT watches.watch_id, watches.watch_name, watches.watch_img,watches.watch_price, cart_items.quantity
+            //      INNER JOIN cart_items ON cart_items.watch_id = watches.watch_id
+            //      WHERE products.id = :product_id;" ;
+            //      $stmt = $dbconnection->prepare($query);
+            //      $stmt->execute(['id' => $query]);
+            //      $product = $stmt->fetch(PDO::FETCH_ASSOC);
+             
+            //     if($users->rowCount()==0){
+            //     echo ("empty table");
+            //     }else{
+            //         foreach($cart_items as $cart_item)
+            //   {  echo "  <tr>
+            //     <td>$cart_item<img src='./{$cart_item['image']}' alt= srcset= style=width:100px> </td>
+            //     <td>$cart_item[watch_name] </td>
+            //     <td>$cart_item[watch_price] </td>
+            //     <td>$cart_item[watch_quentity] </td>
+            //     <td>$cart_item[Total]  </td>
+            //      <td><a href='$cart_item[cart_item_id]' class='btn btn-danger'>Delete</a>  </td>
+            //    </tr> ";
+// }
+//                 }?>  -->
                     <tbody class="align-middle">
                         <tr>
                             <td class="align-middle"><img src="img/product-1.jpg" alt="" style="width: 50px;"> Product Name</td>
@@ -63,7 +48,7 @@
                                         <i class="fa fa-minus"></i>
                                         </button>
                                     </div>
-                                    <input type="text" class="form-control form-control-sm bg-secondary border-0 text-center" value="1">
+                                    <input type="text" class="form-control form-control-sm bg-secondary qun border-0 text-center" value="1">
                                     <div class="input-group-btn">
                                         <button class="btn btn-sm btn-primary bg-danger text-white btn-plus">
                                             <i class="fa fa-plus"></i>
@@ -72,7 +57,7 @@
                                 </div>
                             </td>
                             <td class="align-middle">$150</td>
-                            <td class="align-middle"><button class="btn btn-sm btn-danger bg-danger text-white"><i class="fa fa-times"></i></button></td>
+                            <td class="align-middle"><button class="btn btn-sm btn-danger bg-danger text-white btn-delete"><i class="fa fa-times"></i></button></td>
                         </tr>
                         <tr>
                             <td class="align-middle"><img src="img/product-2.jpg" alt="" style="width: 50px;"> Product Name</td>
@@ -84,7 +69,7 @@
                                         <i class="fa fa-minus"></i>
                                         </button>
                                     </div>
-                                    <input type="text" class="form-control form-control-sm bg-secondary border-0 text-center" value="1" id="qun">
+                                    <input type="text" class="form-control form-control-sm  qun bg-secondary border-0 text-center" value="1" id="qun">
                                     <div class="input-group-btn">
                                         <button class="btn btn-sm btn-primary btn-plus bg-danger text-white" id="plus">
                                             <i class="fa fa-plus"></i>
@@ -93,7 +78,7 @@
                                 </div>
                             </td>
                             <td class="align-middle">$150</td>
-                            <td class="align-middle"><button class="btn btn-sm btn-danger bg-danger text-white"><i class="fa fa-times"></i></button></td>
+                            <td class="align-middle"><button class="btn btn-sm btn-danger bg-danger text-white btn-delete"><i class="fa fa-times"></i></button></td>
                         </tr>
                         <tr>
                             <td class="align-middle"><img src="img/product-3.jpg" alt="" style="width: 50px;"> Product Name</td>
@@ -105,7 +90,7 @@
                                         <i class="fa fa-minus"></i>
                                         </button>
                                     </div>
-                                    <input type="text" class="form-control form-control-sm bg-secondary border-0 text-center" value="1">
+                                    <input type="text" class="form-control form-control-sm  qun bg-secondary border-0 text-center" value="1">
                                     <div class="input-group-btn">
                                         <button class="btn btn-sm btn-primary btn-plus  bg-danger text-white">
                                             <i class="fa fa-plus"></i>
@@ -114,7 +99,7 @@
                                 </div>
                             </td>
                             <td class="align-middle">$150</td>
-                            <td class="align-middle"><button class="btn btn-sm btn-danger bg-danger text-white"><i class="fa fa-times"></i></button></td>
+                            <td class="align-middle"><button class="btn btn-sm btn-danger bg-danger text-white btn-delete"><i class="fa fa-times"></i></button></td>
                         </tr>
                         <tr>
                             <td class="align-middle"><img src="img/product-4.jpg" alt="" style="width: 50px;"> Product Name</td>
@@ -126,7 +111,7 @@
                                         <i class="fa fa-minus"></i>
                                         </button>
                                     </div>
-                                    <input type="text" class="form-control form-control-sm bg-secondary border-0 text-center" value="1">
+                                    <input type="text" class="form-control form-control-sm qun bg-secondary border-0 text-center" value="1">
                                     <div class="input-group-btn">
                                         <button class="btn btn-sm btn-primary btn-plus bg-danger text-white">
                                             <i class="fa fa-plus"></i>
@@ -135,7 +120,7 @@
                                 </div>
                             </td>
                             <td class="align-middle">$150</td>
-                            <td class="align-middle"><button class="btn btn-sm btn-danger bg-danger text-white"><i class="fa fa-times"></i></button></td>
+                            <td class="align-middle"><button class="btn btn-sm btn-danger bg-danger text-white btn-delete"><i class="fa fa-times"></i></button></td>
                         </tr>
                         <tr>
                             <td class="align-middle"><img src="img/product-5.jpg" alt="" style="width: 50px;"> Product Name</td>
@@ -147,7 +132,7 @@
                                         <i class="fa fa-minus"></i>
                                         </button>
                                     </div>
-                                    <input type="text" class="form-control form-control-sm bg-secondary border-0 text-center" value="1">
+                                    <input type="text" class="form-control qun form-control-sm bg-secondary border-0 text-center" value="1">
                                     <div class="input-group-btn">
                                         <button class="btn btn-sm btn-primary btn-plus bg-danger text-white">
                                             <i class="fa fa-plus"></i>
@@ -156,7 +141,7 @@
                                 </div>
                             </td>
                             <td class="align-middle">$150</td>
-                            <td class="align-middle"><button class="btn btn-sm btn-danger bg-danger text-white"><i class="fa fa-times"></i></button></td>
+                            <td class="align-middle"><button class="btn btn-sm btn-danger bg-danger text-white btn-delete"><i class="fa fa-times"></i></button></td>
                         </tr>
                     </tbody>
                 </table>
@@ -175,7 +160,7 @@
                     <div class="border-bottom pb-2">
                         <div class="d-flex justify-content-between mb-3">
                             <h6>Subtotal</h6>
-                            <h6>$150</h6>
+                            <h6 class="price">$150</h6>
                         </div>
                         <div class="d-flex justify-content-between">
                             <h6 class="font-weight-medium">Shipping</h6>
@@ -206,21 +191,39 @@
     <a href="#" class="btn btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a>
 
 <script>
-   var plus = document.getElementById("plus");
-        var min = document.getElementById("min");
-        var qun = document.getElementById("qun");
+       var plusButtons = document.getElementsByClassName('btn-plus');
+var minButtons = document.getElementsByClassName('btn-minus');
+var qunFields = document.getElementsByClassName("qun");
+var deleteButtons = document.getElementsByClassName("btn-delete"); // الحصول على جميع أزرار الحذف
 
-        // Add event listener for the '+' button
-        plus.addEventListener('click', function() {
-            qun.value = parseInt(qun.value) + 1;  // Increment value
-        });
 
-        // Add event listener for the '-' button
-        min.addEventListener('click', function() {
-            if (qun.value > 0) {  // Prevent going below zero
-                qun.value = parseInt(qun.value) - 1;  // Decrement value
-            }
+// Add event listener for each '+' button
+for (let i = 0; i < plusButtons.length; i++) {
+    plusButtons[i].addEventListener('click', function() {
+        let qunValue = parseInt(qunFields[i].value) || 0;  // Get current quantity value
+        qunFields[i].value = qunValue + 1;  // Increment value
+    });
+}
+
+// Add event listener for each '-' button
+for (let i = 0; i < minButtons.length; i++) {
+    minButtons[i].addEventListener('click', function() {
+        let qunValue = parseInt(qunFields[i].value) || 0;  // Get current quantity value
+        if (qunValue > 0) {  // Prevent going below zero
+            qunFields[i].value = qunValue - 1;  // Decrement value
+        }
+    });
+}
+
+for (let i = 0; i < deleteButtons.length; i++) {
+        deleteButtons[i].addEventListener('click', function() {
+            let row = this.parentElement.parentElement; // الحصول على الصف الذي يحتوي على زر الحذف
+            row.remove(); // حذف الصف
         });
+    }
+
+
+    
 </script>
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>

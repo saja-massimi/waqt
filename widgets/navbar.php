@@ -177,7 +177,7 @@
                             <i class="fas fa-heart  text-dark"></i>
                             <span class="badge bg-secondary rounded-circle">0</span>
                         </a>
-                        <a href="#" class="btn mx-2">
+                        <a href="cart.php" class="btn mx-2">
                             <i class="fas fa-shopping-cart  text-dark"></i>
                             <span class="badge bg-secondary rounded-circle">0</span>
                         </a>
