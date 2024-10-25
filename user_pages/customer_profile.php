@@ -9,6 +9,8 @@ if (!isset($_SESSION['user'])) {
     header("Location: ../auth/index.html");
     exit();
 }
+$updateMessage = ""; // Variable to store the message for SweetAlert
+$updateMessage1 = ""; // Variable to store the message for SweetAlert
 
 $user_id = $_SESSION['user'];
 
@@ -40,14 +42,29 @@ if(isset($_POST['edit_profile'])){
     $statment->bindParam(':user_phoneNum',$mobile);
     $statment->bindParam(':user_address',$address);
     $statment->bindParam(':user_id',$user_id);
-    //$statment->execute();
+    $statment->execute();
 
+    $rowsAffected = $statment->rowCount();
 
-if($statment->execute()){
-    header("location: customer_profile.php");
-}else{
-echo "failed of update data";
-}
+        if ($rowsAffected > 0) {
+            $updateMessage = "success";
+            echo "
+            <script>
+            setTimeout(function() {
+            window.location.href = 'customer_profile.php';
+            }, 2000); 
+            </script>
+            ";
+            } else {
+            $updateMessage = "error";
+        }
+
+// if($statment->execute()){
+
+//     $updateMessage = "success";
+// }else{
+//     $updateMessage = "error";
+// }
 
 }
 
@@ -60,6 +77,11 @@ if(isset($_POST['edit_password'])){
  if (password_verify($currentPassword, $user['user_password'])) {
     // Hash the new password
     $newHashedPassword = password_hash($newPassword, PASSWORD_DEFAULT);
+    $updateMessage1 = "password_success";
+
+} else {
+    $newHashedPassword = $user['user_password'];
+    $updateMessage1 = "password_error";
 
 }
 
@@ -67,32 +89,15 @@ $query = "UPDATE `users` SET `user_password` = :user_password  WHERE `user_id` =
 $statment = $dbconnection->prepare($query);
 $statment->bindParam(':user_password', $newHashedPassword);
 $statment->bindParam(':user_id', $user_id);
-//$statment->execute();
-
-if($statment->execute()){
+$statment->execute();
 
 
-echo "<div class='alert alert-success' role='alert'>
-A simple success alert—check it out!
-</div>
-
-<script>
-        setTimeout(function() {
-            window.location.href = '../auth/index.html';
-        }, 5000); 
-</script>";
-
-
-
-}else{
-echo "failed of update data";
+    // if ($statement->execute()) {
+    //     $updateMessage1 = "password_success";
+    // } else {
+    //     $updateMessage1 = "password_error";
+    // }
 }
-
-}
-
-
-
-
 ?>
 
 
@@ -103,6 +108,8 @@ echo "failed of update data";
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Customer Profile</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 
   
   <style>
@@ -265,7 +272,7 @@ echo "failed of update data";
 
   <!-- Column 2: Customer Information -->
   <div class="customer-info">
-    <form method="post" action="customer_profile.php">
+    <form method="post" action="">
       <label for="name">Name:</label>
       <input type="text" name="name" value="<?php echo $user['user_name'] ?? ''; ?>">
 
@@ -308,7 +315,53 @@ echo "failed of update data";
   </div>
 </div>
 
+<?php if ($updateMessage == "success"): ?>
+<script>
+    Swal.fire({
+        icon: 'success',
+        title: 'Profile updated successfully!',
+        timer: 2000,
+        showConfirmButton: false
+    });
+</script>
+<?php elseif ($updateMessage == "error"): ?>
+<script>
+    Swal.fire({
+        icon: 'error',
+        title: 'Update failed',
+        text: 'Please try again.',
+        timer: 2000,
+        showConfirmButton: false
+    });
+</script>
+
+<?php elseif ($updateMessage1 == "password_success"): ?>
+
+<script>
+    Swal.fire({
+        icon: 'success',
+        title: 'Password updated successfully!',
+        text: 'Redirecting to login...',
+        timer: 5000,
+        showConfirmButton: false
+    }).then(() => {
+        window.location.href = '../auth/index.html';
+    });
+</script>
+<?php elseif ($updateMessage1 == "password_error"): ?>
+<script>
+    Swal.fire({
+        icon: 'error',
+        title: 'Password update failed',
+        text: 'There was an issue updating the password. Please try again.',
+    });
+</script>
+
+<?php endif; ?>
+
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
 
 </body>
 </html>
