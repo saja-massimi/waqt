@@ -27,7 +27,7 @@ $materials = $products->AllMaterials();
         margin-right: 20px;
     }
 
-    .text-center a {
+    .product-item.list-view .text-center a {
         font-size: 0.7em;
     }
 
@@ -74,7 +74,7 @@ $materials = $products->AllMaterials();
         <div class="row px-xl-5">
 
             <!-- Shop Sidebar Start -->
-            <div class="col-lg-3 col-md-4">
+            <div class="col-lg-3 col-md-4" id="sidebar">
 
                 <!-- Price Filter Start -->
                 <h5 class="section-title position-relative text-uppercase mb-3">
@@ -95,7 +95,7 @@ $materials = $products->AllMaterials();
                 </h5>
                 <div class="bg-light p-4 mb-30">
                     <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                        <input type="checkbox" name="category[]" class="custom-control-input" id="all" value="all" checked>
+                        <input type="checkbox" name="category[]" class="custom-control-input" id="all" value="" checked>
                         <label class="custom-control-label" for="all">All Categories</label>
                     </div>
                     <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
@@ -208,12 +208,14 @@ $materials = $products->AllMaterials();
 
                     <div class="col-12">
                         <nav>
-                            <ul class="pagination justify-content-center">
+                            <ul class="pagination justify-content-center" id="pagination">
+
                                 <li class="page-item disabled"><a class="page-link" href="#">Previous</span></a></li>
                                 <li class="page-item active"><a class="page-link" href="#">1</a></li>
                                 <li class="page-item"><a class="page-link" href="#">2</a></li>
                                 <li class="page-item"><a class="page-link" href="#">3</a></li>
                                 <li class="page-item"><a class="page-link" href="#">Next</a></li>
+
                             </ul>
                         </nav>
                     </div>
@@ -241,12 +243,9 @@ $materials = $products->AllMaterials();
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
     <script src="../lib/easing/easing.min.js"></script>
     <script src="../lib/owlcarousel/owl.carousel.min.js"></script>
-
-    <!-- Contact Javascript File -->
     <script src="../mail/jqBootstrapValidation.min.js"></script>
     <script src="../mail/contact.js"></script>
     <script src="./fliteringProducts.js"></script>
-    <!-- Template Javascript -->
     <script src="../js/main.js"></script>
 
 
