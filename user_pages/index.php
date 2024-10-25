@@ -1,58 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="utf-8">
-    <title>MultiShop - Online Shop Website Template</title>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <meta content="watches ecommerce " name="keywords">
-    <meta content="An ecommerce website for selling wathces" name="description">
-
-    <!-- Favicon -->
-    <link href="../img/logo1.png" rel="icon">
-
-    <!-- Google Web Fonts -->
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">  
-
-    <!-- Font Awesome -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-
-    <!-- Libraries Stylesheet -->
-    <link href="lib/animate/animate.min.css" rel="stylesheet">
-    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-
-    <!-- Customized Bootstrap Stylesheet -->
-    <link href="../css/style.css" rel="stylesheet">
-    <style>
-
-        .vendor-carousel .bg-light {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 150px; /* Adjust height as per your needs */
-            padding: 20px;
-        }
-
-        .vendor-carousel img {
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: contain;
-        }
-
-    </style>
-</head>
-
+<?php  include("../widgets/navbar.php");?>
 
 
 
 <body>
-<?php  include("../widgets/navbar.php");?>
-    <!-- Navbar End -->
-     <!-- landing page start -->
-    <div class="landing-section">
+<section class="landing-section">
   <video autoplay muted loop id="landing-video">
-    <source src="path-to-your-video.mp4" type="video/mp4">
+    <source src="../img/video/landing_page.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>
 
@@ -60,11 +13,11 @@
 
   <div class="landing-content">
     <h1>Welcome to WAQT</h1>
-    <p>Discover Timeless Elegance</p>
-    <a href="shop.html" class="btn btn-primary">Shop Now</a>
+    <p>Waqt offers elegant, <br>high-quality watches blending classic craftsmanship with modern design, <br>prioritizing customer satisfaction and personalized service.</p>
+    <a href="index.php" class="btn btn-outline-light py-2 px-4 mt-3 animate__animated animate__fadeInUp">Shop Now</a>
   </div>
-</div>
-
+</section>
+    <!-- Navbar End -->
 
     <!-- Carousel Start -->
     <div class="container-fluid mb-3">
@@ -157,15 +110,15 @@
 
 
     <!-- Categories Start -->
+    <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">Our Category</span></h2>
     <div class="container-fluid pt-5 pb-3">
         <div class="row px-xl-5">
             <div class="col-md-6">
                 <div class="product-offer mb-30" style="height: 300px;">
                     <img class="img-fluid" src="../img/gallery/new_product1.png" alt="">
                     <div class="offer-text">
-                        <h6 class="text-white text-uppercase">فخامة رجالية
-             تألق دائماً مع ي</h6>
-                        <h3 class="text-white mb-3">Special Offer</h3>
+                        <h6 class="text-white text-uppercase"></h6>
+                        <h3 class="text-white mb-3">Men's luxury always shines</h3>
                         <a href="" class="btn btn-outline-light py-2 px-4 mt-3 animate__animated animate__fadeInUp">Shop Now</a>
                     </div>
                 </div>
@@ -174,7 +127,7 @@
                 <div class="product-offer mb-30" style="height: 300px;">
                     <img class="img-fluid" src="../img/gallery/new_product3.png" alt="">
                     <div class="offer-text">
-                        <h3 class="text-white mb-3"></h3>
+                        <h3 class="text-white mb-3">Wemen's luxury always shines</h3>
                         <a href="" class="btn btn-outline-light py-2 px-4 mt-3 animate__animated animate__fadeInUp">Shop Now</a>
                     </div>
                 </div>
@@ -228,32 +181,7 @@
     <!-- Products End -->
 
 
-    <!-- Offer Start -->
-    <div class="container-fluid pt-5 pb-3">
-        <div class="row px-xl-5">
-            <div class="col-md-6">
-                <div class="product-offer mb-30" style="height: 300px;">
-                    <img class="img-fluid" src="../img/gallery/new_product2.png" alt="">
-                    <div class="offer-text">
-                        <h6 class="text-white text-uppercase">Save 20%</h6>
-                        <h3 class="text-white mb-3">Special Offer</h3>
-                        <a href="" class="btn btn-outline-light py-2 px-4 mt-3 animate__animated animate__fadeInUp">Shop Now</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="product-offer mb-30" style="height: 300px;">
-                    <img class="img-fluid" src="../img/gallery/new_product3.png" alt="">
-                    <div class="offer-text">
-                        <h6 class="text-white text-uppercase">Save 20%</h6>
-                        <h3 class="text-white mb-3">Special Offer</h3>
-                        <a href="" class="btn btn-outline-light py-2 px-4 mt-3 animate__animated animate__fadeInUp">Shop Now</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Offer End -->
+
 
 
     <!-- Products Start -->
@@ -485,7 +413,7 @@
     <div class="container-fluid py-5">
     <div class="row px-xl-5">
         <div class="col">
-            <div class=" owl-carousel vendor-carousel">
+            <div class="row owl-carousel vendor-carousel">
                 <div class="bg-light p-4">
                     <img src="../img/vendor-1.jpg" alt="Vendor 1">
                 </div>

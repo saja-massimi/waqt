@@ -32,12 +32,12 @@
         
     
         body {
-        background: #fff;
+        background: white;
          
         }
     
         .content h2 {
-          color: #000;
+          color: red;
           font-size: 40px;
           text-align: center;
           margin-bottom: 20px;
@@ -58,12 +58,12 @@
           outline: none;
           border-radius: 6px;
           font-size: 16px;
-          color: #ededed;
+          color: black;
           margin: 12px 0;
         }
     
         .field .item::placeholder {
-          color: rgba(255, 255, 255, 0.3);
+          color: black;
         }
     
         .field .error-txt {
@@ -101,20 +101,67 @@
 </head>
 
 <body>
+  <?php
+
+
+
+    if (isset($_POST['submit_contact'])) {
+        $contact_name = $_POST['name'];
+        $contact_email = $_POST['email'];
+        $contact_phone = $_POST['phone_number'];
+        $contact_subject = $_POST['subject'];
+        $contact_message = $_POST['message'];
+        $host = "localhost";
+        $username = "root";
+        $password = "";
+        $dbname = "tick&style";
+    
+        try {
+            // Connect to the database using PDO
+            $dsn = 'mysql:host=' . $host . ';dbname=' . $dbname;
+            $conn = new PDO($dsn, $username, $password);
+            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    
+            // Prepare the SQL statement
+            $sql = "INSERT INTO contact_us (name, email, phone_number, subject, message) 
+                    VALUES (:name, :email, :phone_number, :subject, :message)";
+            
+            $stmt = $conn->prepare($sql);
+    
+            // Bind parameters and execute the statement
+            $stmt->execute([
+                ':name' => $contact_name,
+                ':email' => $contact_email,
+                ':phone_number' => $contact_phone,
+                ':subject' => $contact_subject,
+                ':message' => $contact_message
+            ]);
+    
+           
+            
+        } catch (PDOException $e) {
+            // Handle any errors
+            echo "Connection failed: " . $e->getMessage();
+        }
+    }
   
+    ?>
+
+  
+
     <section class="content container">
         <h2>Contact Waqt Team</h2>
-        <form>
+        <form action="contact.php" method="post">
           <!-- First Row: Full Name & Email -->
           <div class="row mb-3">
             <div class="col-md-6 mb-3 mb-md-0">
               <div class="input-field field">
-                <input type="text" required placeholder="Full Name" id="name" class="form-control item" autocapitalize="off">
+                <input type="text" required placeholder="Full Name" id="name" class="form-control item" autocapitalize="off" name="name">
               </div>
             </div>
             <div class="col-md-6">
               <div class="input-field field">
-                <input type="email" required placeholder="Email Address" id="email" class="form-control item" autocapitalize="off">
+                <input type="email" required placeholder="Email Address" id="email"  name="email"class="form-control item" autocapitalize="off">
               </div>
             </div>
           </div>
@@ -123,23 +170,23 @@
           <div class="row mb-3">
             <div class="col-md-6 mb-3 mb-md-0">
               <div class="input-field field">
-                <input type="text" minlength="9" required placeholder="Phone Number" id="phone" class="form-control item" autocapitalize="off">
+                <input type="text" minlength="9" required placeholder="Phone Number" id="phone" name="phone_number" class="form-control item" autocapitalize="off">
               </div>
             </div>
             <div class="col-md-6">
               <div class="input-field field">
-                <input type="text" required placeholder="Subject" id="subject" class="form-control item" autocapitalize="off">
+                <input type="text" required placeholder="Subject" id="subject" name="subject" class="form-control item" autocapitalize="off">
               </div>
             </div>
           </div>
     
           <!-- Message Field -->
           <div class="textarea-field field mb-3">
-            <textarea name="Message" required id="Message" cols="30" rows="5" placeholder="Your Message" class="form-control item" autocapitalize="off" minlength="20"></textarea>
+            <textarea name="message" required id="Message" cols="30" rows="5" placeholder="Your Message" class="form-control item" autocapitalize="off" minlength="20"></textarea>
           </div>
     
           <!-- Submit Button -->
-          <button type="submit" class="btn btn-danger submit">Send massage</button>
+          <button type="submit" class="btn btn-danger submit" name="submit_contact">Send massage</button>
         </form>
       </section>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -175,10 +222,10 @@
 
             Email.send({
                 Host: "smtp.elasticemail.com",
-                Username: "moawiah.eqailan@gmail.com",
+                Username: "",
                 Password: "D122E06D8037D94978B5634475CFBB3F2D42",
-                To: 'moawiah.eqailan@gmail.com',
-                From: "moawiah.eqailan@gmail.com",
+                To: '',
+                From: "",
                 Subject: subject.value,
                 Body: bodyMessage
             }).then(
@@ -205,4 +252,4 @@ src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.j
 </body>
 
 </html>
-<?php include("../widgets/footer.php");?>
+<?php  include("../widgets/footer.php");?>
