@@ -2710,7 +2710,7 @@ fieldset:disabled a.btn {
 
 .btn-primary {
   color:white !important;
-  border-color: var(--primary);
+  border-color:var(--red);
 }
 
 .btn-primary:hover {
