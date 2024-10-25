@@ -1,9 +1,62 @@
 document.addEventListener('DOMContentLoaded', function () {
 
+    const gridViewBtn = document.querySelector('.fa-th-large');
+    const listViewBtn = document.querySelector('.fa-bars');
+    const productContainer = document.querySelectorAll('.product-item');
+
+    gridViewBtn.addEventListener('click', function () {
+        productContainer.forEach(product => {
+            product.classList.remove('list-view');
+        });
+    });
+
+    listViewBtn.addEventListener('click', function () {
+        productContainer.forEach(product => {
+            product.classList.add('list-view');
+        });
+    });
+
+});
+//*******************************************************************************/
+//function to filter products by newest, oldest
+document.addEventListener('DOMContentLoaded', function () {
+    const sortButton = document.getElementById('sortButton');
+    const sortLinks = document.querySelectorAll('.dropdown-item[data-sort]');
+
+    sortLinks.forEach(link => {
+        link.addEventListener('click', function (e) {
+            e.preventDefault();
+            const sortType = this.getAttribute('data-sort');
+            sortButton.textContent = this.textContent;
+
+            applySort(sortType);
+        });
+    });
+
+    function applySort(sortType) {
+        const queryString = new URLSearchParams({ sort: sortType }).toString();
+
+        fetch('./controllers/filterResultsController.php?' + queryString)
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('productList').innerHTML = data;
+            })
+            .catch(error => console.error('Error fetching sorted results:', error));
+    }
+});
+
+//********************************************************************************/
+document.addEventListener('DOMContentLoaded', function () {
+
     const priceSlider = document.getElementById('priceRange');
     priceSlider.addEventListener('input', function () {
         document.getElementById('priceRangeValue').innerText = priceSlider.value + ' JD';
         applyFilters();
+    });
+
+    const selectedSorrt = document.getElementById('sort');
+    selectedSorrt.addEventListener('change', function () {
+
     });
 
     const checkboxes = document.querySelectorAll('input[type="checkbox"]');
@@ -39,3 +92,5 @@ document.addEventListener('DOMContentLoaded', function () {
             .catch(error => console.error('Error fetching filtered results:', error));
     }
 });
+
+//category and all products

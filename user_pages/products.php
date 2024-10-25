@@ -14,6 +14,38 @@ $materials = $products->AllMaterials();
 ?>
 
 <?php include '../widgets/head.php'; ?>
+<style>
+    .product-item.list-view {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding: 10px;
+    }
+
+    .product-item.list-view .product-img {
+        width: 30%;
+        margin-right: 20px;
+    }
+
+    .text-center a {
+        font-size: 0.7em;
+    }
+
+    .product-item.list-view .text-center {
+        text-align: left;
+        width: 70%;
+
+    }
+
+    .product-item.list-view .d-flex {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .product-item.list-view .product-action {
+        margin-top: 10px;
+    }
+</style>
 
 <body>
 
@@ -67,11 +99,11 @@ $materials = $products->AllMaterials();
                         <label class="custom-control-label" for="all">All Categories</label>
                     </div>
                     <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                        <input type="checkbox" name="category[]" class="custom-control-input" id="women" value="women">
+                        <input type="checkbox" name="category[]" class="custom-control-input" id="women" value="female">
                         <label class="custom-control-label" for="women">Women</label>
                     </div>
                     <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                        <input type="checkbox" name="category[]" class="custom-control-input" id="men" value="men">
+                        <input type="checkbox" name="category[]" class="custom-control-input" id="men" value="male">
                         <label class="custom-control-label" for="men">Men</label>
                     </div>
                 </div>
@@ -102,8 +134,6 @@ $materials = $products->AllMaterials();
                 </h5>
                 <div class="bg-light p-4 mb-30">
 
-
-
                     <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
                         <input type="checkbox" name="material[]" class="custom-control-input" id="allMaterials" value="all" checked>
                         <label class="custom-control-label" for="allMaterials">All Materials</label>
@@ -127,6 +157,7 @@ $materials = $products->AllMaterials();
             <!-- Shop Product Start -->
             <div class="col-lg-9 col-md-8">
                 <div class="row pb-3">
+
                     <div class="col-12 pb-1">
                         <div class="d-flex align-items-center justify-content-between mb-4">
                             <div>
@@ -135,25 +166,20 @@ $materials = $products->AllMaterials();
                             </div>
                             <div class="ml-2">
                                 <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">Sorting</button>
-                                    <div class="dropdown-menu dropdown-menu-right">
-                                        <a class="dropdown-item" href="#">Latest</a>
-                                        <a class="dropdown-item" href="#">Popularity</a>
-                                        <a class="dropdown-item" href="#">Best Rating</a>
+                                    <button type="button" id="sortButton" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">Sorting</button>
+                                    <div class="dropdown-menu dropdown-menu-right" id="sort">
+                                        <a class="dropdown-item" href="#" data-sort="latest">Latest</a>
+                                        <a class="dropdown-item" href="#" data-sort="oldest">Oldest</a>
+                                        <a class="dropdown-item" href="#" data-sort="high">Highest Price</a>
+                                        <a class="dropdown-item" href="#" data-sort="low">Lowest Price</a>
                                     </div>
                                 </div>
-                                <div class="btn-group ml-2">
-                                    <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">Showing</button>
-                                    <div class="dropdown-menu dropdown-menu-right">
-                                        <a class="dropdown-item" href="#">10</a>
-                                        <a class="dropdown-item" href="#">20</a>
-                                        <a class="dropdown-item" href="#">30</a>
-                                    </div>
-                                </div>
+
                             </div>
                         </div>
                     </div>
-                    <div id="productList">
+
+                    <div id="productList" class="row">
                         <?php
 
                         foreach ($allProducts as $product) { ?>
@@ -163,8 +189,7 @@ $materials = $products->AllMaterials();
                                         <img class="img-fluid w-100" src="<?php echo $product['watch_img']; ?>" alt="<?php echo $product['watch_name']; ?>">
                                         <div class="product-action">
                                             <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a>
-                                            <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
-                                            <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-sync-alt"></i></a>
+                                            <a class="btn btn-outline-dark btn-square" href="./wishlist.php?<?= $product['watch_id'] ?>"><i class="far fa-heart"></i></a>
                                             <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-search"></i></a>
                                         </div>
                                     </div>
@@ -214,15 +239,16 @@ $materials = $products->AllMaterials();
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-    <script src="lib/easing/easing.min.js"></script>
-    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="../lib/easing/easing.min.js"></script>
+    <script src="../lib/owlcarousel/owl.carousel.min.js"></script>
 
     <!-- Contact Javascript File -->
-    <script src="mail/jqBootstrapValidation.min.js"></script>
-    <script src="mail/contact.js"></script>
+    <script src="../mail/jqBootstrapValidation.min.js"></script>
+    <script src="../mail/contact.js"></script>
     <script src="./fliteringProducts.js"></script>
     <!-- Template Javascript -->
     <script src="../js/main.js"></script>
+
 
 </body>
 
