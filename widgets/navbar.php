@@ -13,7 +13,7 @@
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">  
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 
     <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
@@ -25,12 +25,11 @@
     <!-- Customized Bootstrap Stylesheet -->
     <link href="../css/style.css" rel="stylesheet">
     <style>
-
         .vendor-carousel .bg-light {
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 150px; /* Adjust height as per your needs */
+            height: 150px;
             padding: 20px;
         }
 
@@ -134,17 +133,17 @@
                     <img src="../img/logo1.png" width="50" height="50" class="d-inline" alt="logo">
                     WAQT
                 </a>
-                
+
                 <!-- Toggler Button for Mobile Menu -->
                 <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                
+
                 <!-- Navbar Collapse -->
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <!-- Spacer for logo on the left -->
                     <div class="navbar-nav mr-auto"></div>
-                    
+
                     <!-- Navbar Links (Centered) -->
                     <div class="navbar-nav mx-auto">
                         <a href="index.php" class="nav-item nav-link active">Home</a>
@@ -158,7 +157,7 @@
                                 <a href="checkout.php" class="dropdown-item">Checkout</a>
                             </div>
                         </div>
-                        
+
                         <!-- Categories Dropdown -->
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Categories</a>
@@ -177,11 +176,11 @@
 
                     <!-- Right-side Icons -->
                     <div class="navbar-nav ml-auto d-flex align-items-center">
-                        <a href="#" class="btn">
+                        <a href="../user_pages/wishlist.php" class="btn">
                             <i class="fas fa-heart  text-dark"></i>
                             <span class="badge bg-secondary rounded-circle">0</span>
                         </a>
-                        <a href="#" class="btn mx-2">
+                        <a href="cart.php" class="btn mx-2">
                             <i class="fas fa-shopping-cart  text-dark"></i>
                             <span class="badge bg-secondary rounded-circle">0</span>
                         </a>
