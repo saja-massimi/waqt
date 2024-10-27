@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
 
-    // Elements for "All" checkboxes and respective category checkboxes
+
+
     const allCategoryCheckbox = document.getElementById('all');
     const categoryCheckboxes = document.querySelectorAll('input[name="category[]"]:not(#all)');
 
@@ -17,6 +18,17 @@ document.addEventListener('DOMContentLoaded', function () {
     const sortButton = document.getElementById('sortButton');
     const sortLinks = document.querySelectorAll('.dropdown-item[data-sort]');
 
+    // Set "All" checkboxes to checked
+    allCategoryCheckbox.checked = true;
+    allBrandCheckbox.checked = true;
+    allMaterialCheckbox.checked = true;
+
+    // Call applyFilters on page load to reflect initial filter state
+    applyFilters();
+
+    handleAllCheckbox(allCategoryCheckbox, categoryCheckboxes);
+    handleAllCheckbox(allBrandCheckbox, brandCheckboxes);
+    handleAllCheckbox(allMaterialCheckbox, materialCheckboxes);
     // Function to apply filters
     function applyFilters() {
         const productList = document.getElementById('productList');
@@ -43,7 +55,6 @@ document.addEventListener('DOMContentLoaded', function () {
             .catch(error => console.error('Error fetching filtered results:', error));
     }
 
-    // Generic function to handle "All" checkbox logic
     function handleAllCheckbox(allCheckbox, checkboxes) {
         allCheckbox.addEventListener('change', function () {
             const isChecked = allCheckbox.checked;
@@ -59,7 +70,6 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // Apply "All" checkbox logic for each filter group
     handleAllCheckbox(allCategoryCheckbox, categoryCheckboxes);
     handleAllCheckbox(allBrandCheckbox, brandCheckboxes);
     handleAllCheckbox(allMaterialCheckbox, materialCheckboxes);
@@ -97,23 +107,23 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-//HANDLE PAGINATION
+    //HANDLE PAGINATION
 
     const paginationContainer = document.getElementById('pagination');
 
-function loadProducts(page = 1) {
+    function loadProducts(page = 1) {
         const queryString = new URLSearchParams({ page }).toString();
 
         fetch(`./controllers/filterResultsController.php?${queryString}`)
             .then(response => response.text())
             .then(data => {
                 document.getElementById('productList').innerHTML = data;
-                updatePagination(page); // Update the pagination buttons
+                updatePagination(page);
             })
             .catch(error => console.error('Error fetching products:', error));
     }
 
-    
+
 
 
     function updatePagination(currentPage) {

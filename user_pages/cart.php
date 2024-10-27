@@ -1,84 +1,61 @@
-<?php  include("../widgets/navbar.php");?>
-    <!-- Cart Start -->
-    <div class="container-fluid">
-        <div class="row px-xl-5">
-            <div class="col-lg-8 table-responsive mb-5">
-                <table class="table table-light table-borderless table-hover text-center mb-0">
-                    <thead class="thead-dark">
+<?php
+require_once("../widgets/navbar.php");
+require_once '../user_pages/models/Dbh.php';
+require_once '../user_pages/models/cartModel.php';
+
+$cartModel = new cartModel();
+$cartID = $cartModel->getCartId($_SESSION['user']);
+
+$products = $cartModel->getAllProductsInCart($cartID);
+$total = 0;
+?>
+
+<!-- Cart Start -->
+<div class="container-fluid">
+    <div class="row px-xl-5">
+        <div class="col-lg-8 table-responsive mb-5">
+            <table class="table table-light table-borderless table-hover text-center mb-0">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Products</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Total</th>
+                        <th>Remove</th>
+                    </tr>
+                </thead>
+                <tbody class="align-middle">
+                    <?php foreach ($products as $product):
+                        $product_id = $product['watch_id'];
+                        $productDetails = $cartModel->getWatchDetails($product_id);
+                        $total += $productDetails['watch_price'] * $product['quantity'];
+                    ?>
                         <tr>
-                            <th>Products</th>
-                            <th>Price</th>
-                            <th>Quantity</th>
-                            <th>Total</th>
-                            <th>Remove</th>
-                        </tr>
-                    </thead>
-                    
-            
-            <!-- // require "dbconnection.php";
-            //     $query="SELECT watches.watch_id, watches.watch_name, watches.watch_img,watches.watch_price, cart_items.quantity
-            //      INNER JOIN cart_items ON cart_items.watch_id = watches.watch_id
-            //      WHERE products.id = :product_id;" ;
-            //      $stmt = $dbconnection->prepare($query);
-            //      $stmt->execute(['id' => $query]);
-            //      $product = $stmt->fetch(PDO::FETCH_ASSOC);
-             
-            //     if($users->rowCount()==0){
-            //     echo ("empty table");
-            //     }else{
-            //         foreach($cart_items as $cart_item)
-            //   {  echo "  <tr>
-            //     <td>$cart_item<img src='./{$cart_item['image']}' alt= srcset= style=width:100px> </td>
-            //     <td>$cart_item[watch_name] </td>
-            //     <td>$cart_item[watch_price] </td>
-            //     <td>$cart_item[watch_quentity] </td>
-            //     <td>$cart_item[Total]  </td>
-            //      <td><a href='$cart_item[cart_item_id]' class='btn btn-danger'>Delete</a>  </td>
-            //    </tr> ";
-// }
-//                 }?>  -->
-                    <tbody class="align-middle">
-                        <tr>
-                            <td class="align-middle"><img src="img/product-1.jpg" alt="" style="width: 50px;"> Product Name</td>
-                            <td class="align-middle">$150</td>
+                            <td class="align-middle"><img src="<?= htmlspecialchars($productDetails['watch_img']) ?>" alt="" style="width: 50px;"> <?= htmlspecialchars($productDetails['watch_name']) ?></td>
+                            <td class="align-middle"><?= htmlspecialchars($productDetails['watch_price']) ?> JOD</td>
                             <td class="align-middle">
                                 <div class="input-group quantity mx-auto" style="width: 100px;">
-                                    <div class="input-group-btn">
-                                        <button class="btn btn-sm btn-primary bg-danger text-white btn-minus" >
+                                    <!-- Decrease Quantity -->
+                                    <button class="btn btn-sm btn-danger text-white adjust-quantity" data-action="decrease" data-product-id="<?= $product_id ?>" data-quantity="<?= $product['quantity'] ?>">
                                         <i class="fa fa-minus"></i>
-                                        </button>
-                                    </div>
-                                    <input type="text" class="form-control form-control-sm bg-secondary qun border-0 text-center" value="1">
-                                    <div class="input-group-btn">
-                                        <button class="btn btn-sm btn-primary bg-danger text-white btn-plus">
-                                            <i class="fa fa-plus"></i>
-                                        </button>
-                                    </div>
+                                    </button>
+
+                                    <input type="text" class="form-control form-control-sm bg-secondary qun border-0 text-center" id="quantity-<?= $product_id ?>" value="<?= $product['quantity'] ?>" readonly>
+
+                                    <!-- Increase Quantity -->
+                                    <button class="btn btn-sm btn-primary text-white adjust-quantity" data-action="increase" data-product-id="<?= $product_id ?>" data-quantity="<?= $product['quantity'] ?>">
+                                        <i class="fa fa-plus"></i>
+                                    </button>
                                 </div>
                             </td>
-                            <td class="align-middle">$150</td>
-                            <td class="align-middle"><button class="btn btn-sm btn-danger bg-danger text-white btn-delete"><i class="fa fa-times"></i></button></td>
-                        </tr>
-                        <tr>
-                            <td class="align-middle"><img src="img/product-2.jpg" alt="" style="width: 50px;"> Product Name</td>
-                            <td class="align-middle">$150</td>
+                            <td class="align-middle"><?= htmlspecialchars($productDetails['watch_price'] * $product['quantity']) ?> JOD</td>
+
+                            <!-- Delete Product -->
                             <td class="align-middle">
-                                <div class="input-group quantity mx-auto" style="width: 100px;">
-                                    <div class="input-group-btn">
-                                        <button class="btn btn-sm btn-primary btn-minus bg-danger text-white" id="min" >
-                                        <i class="fa fa-minus"></i>
-                                        </button>
-                                    </div>
-                                    <input type="text" class="form-control form-control-sm  qun bg-secondary border-0 text-center" value="1" id="qun">
-                                    <div class="input-group-btn">
-                                        <button class="btn btn-sm btn-primary btn-plus bg-danger text-white" id="plus">
-                                            <i class="fa fa-plus"></i>
-                                        </button>
-                                    </div>
-                                </div>
+                                <button class="btn btn-sm btn-warning text-white adjust-quantity" data-action="delete" data-product-id="<?= $product_id ?>">
+                                    <i class="fa fa-trash"></i>
+                                </button>
                             </td>
-                            <td class="align-middle">$150</td>
-                            <td class="align-middle"><button class="btn btn-sm btn-danger bg-danger text-white btn-delete"><i class="fa fa-times"></i></button></td>
                         </tr>
                         <tr>
                             <td class="align-middle"><img src="img/product-3.jpg" alt="" style="width: 50px;"> Product Name</td>
@@ -172,78 +149,46 @@
                             <h5>Total</h5>
                             <h5>$160</h5>
                         </div>
-                        <button type="button" class="btn btn-primary bg-danger text-white font-weight-bold my-2 py-3 w-100">Check Out</button>
-
-  
-
+                        <button class="btn btn-block btn-primary  bg-danger text-white font-weight-bold my-3 py-3">Proceed To Checkout</button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
     <!-- Cart End -->
 
+<?php include("../widgets/footer.php"); ?>
 
-    <!-- Footer Start -->
-    <?php  include("../widgets/footer.php");?>
-
-    <!-- Footer End -->
-
-
-    <!-- Back to Top -->
-    <a href="#" class="btn btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a>
-
+<!-- JavaScript to Handle AJAX for Cart Actions -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script>
-       var plusButtons = document.getElementsByClassName('btn-plus');
-var minButtons = document.getElementsByClassName('btn-minus');
-var qunFields = document.getElementsByClassName("qun");
-var deleteButtons = document.getElementsByClassName("btn-delete"); // الحصول على جميع أزرار الحذف
+    $(document).ready(function() {
+        // Handle quantity adjustments and product removal with AJAX
+        $('.adjust-quantity').on('click', function(e) {
+            e.preventDefault();
+            const action = $(this).data('action');
+            const productId = $(this).data('product-id');
+            const quantity = $(this).data('quantity'); // Get current quantity
 
-
-
-// Add event listener for each '+' button
-for (let i = 0; i < plusButtons.length; i++) {
-    plusButtons[i].addEventListener('click', function() {
-        let qunValue = parseInt(qunFields[i].value) || 0;  // Get current quantity value
-        qunFields[i].value = qunValue + 1;  // Increment value
-    });
-}
-
-// Add event listener for each '-' button
-for (let i = 0; i < minButtons.length; i++) {
-    minButtons[i].addEventListener('click', function() {
-        let qunValue = parseInt(qunFields[i].value) || 0;  // Get current quantity value
-        if (qunValue > 0) {  // Prevent going below zero
-            qunFields[i].value = qunValue - 1;  // Decrement value
-        }
-    });
-}
-
-
-
-//   btn-delete=>Swal.fire({
-//   title: "Are you sure?",
-//   text: "You won't be able to revert this!",
-//   icon: "warning",
-//   showCancelButton: true,
-//   confirmButtonColor: "#3085d6",
-//   cancelButtonColor: "#d33",
-//   confirmButtonText: "Yes, delete it!"
-// }).then((result) => {
-//   if (result.isConfirmed) {
-//     Swal.fire({
-//       title: "Deleted!",
-//       text: "Your file has been deleted.",
-//       icon: "success"
-//     });
-//   }
-// });
-for (let i = 0; i < deleteButtons.length; i++) {
-        deleteButtons[i].addEventListener('click', function() {
-            let row = this.parentElement.parentElement; // الحصول على الصف الذي يحتوي على زر الحذف
-            row.remove(); // حذف الصف
+            $.ajax({
+                type: 'POST',
+                url: '../user_pages/controllers/cartController.php',
+                data: {
+                    action: action,
+                    product_id: productId,
+                    quantity: quantity
+                },
+                dataType: 'json',
+                success: function(response) {
+                    if (response.status === 'success') {
+                        location.reload();
+                    } else {
+                        alert(response.message);
+                    }
+                }
+            });
         });
-    }
-    
+    });
 </script>
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>

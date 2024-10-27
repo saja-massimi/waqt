@@ -10,8 +10,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && !empty(file_get_contents("php://inp
     $email = $data['email'] ?? '';
     $password = $data['password'] ?? '';
     $passwordMatch = $data['passwordMatch'] ?? '';
-    $role=$data['role'] ?? '';
-    $isDeleted=$data['isDeleted'] ?? '';
+    $role = $data['role'] ?? '';
+    $isDeleted = $data['isDeleted'] ?? '';
     // Validate username
     if (strlen($username) < 3 || strlen($username) > 30) {
         $response = "signupErrorMessage.textContent = 'Username must be between 3 and 20 characters long';";
@@ -19,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && !empty(file_get_contents("php://inp
         exit();
     }
 
-    
+
 
     // Validate email
     if (empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -92,22 +92,30 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && !empty(file_get_contents("php://inp
         $response = "signupErrorMessage.textContent = 'User already exists';";
         echo json_encode($response);
     } else {
-       
-        
 
-         // Insert new user into the database
-         $hashedPassword = password_hash($password, PASSWORD_DEFAULT); // Hash the password
 
-         $insertStmt = $conn->prepare("INSERT INTO users (user_name, user_email, user_password,role,	isDeleted) VALUES (:username, :email, :password,:role,:isDeleted)");
-         $insertStmt->bindParam(':username', $username);
-         $insertStmt->bindParam(':email', $email);
-         $insertStmt->bindParam(':password', $hashedPassword);
-         $insertStmt->bindParam(':role', $role);
-         $isDeleted = (int) $isDeleted; 
-         $insertStmt->bindParam(':isDeleted', $isDeleted, PDO::PARAM_INT);
- 
-         if ($insertStmt->execute()) {
-             $response = "signupErrorMessage.innerHTML = 'Registered successfully!<br> Check your email to activate.';signupErrorMessage.style.color='green';
+
+        // Insert new user into the database
+        $hashedPassword = password_hash($password, PASSWORD_DEFAULT); // Hash the password
+
+        $insertStmt = $conn->prepare("INSERT INTO users (user_name, user_email, user_password,role,	isDeleted) VALUES (:username, :email, :password,:role,:isDeleted)");
+        $insertStmt->bindParam(':username', $username);
+        $insertStmt->bindParam(':email', $email);
+        $insertStmt->bindParam(':password', $hashedPassword);
+        $insertStmt->bindParam(':role', $role);
+        $isDeleted = (int) $isDeleted;
+        $insertStmt->bindParam(':isDeleted', $isDeleted, PDO::PARAM_INT);
+
+        if ($insertStmt->execute()) {
+            //add a cart for the user
+            $user_id = $conn->lastInsertId();
+            $cartStmt = $conn->prepare("INSERT INTO carts (user_id) VALUES (:user_id)");
+            $cartStmt->bindParam(':user_id', $user_id);
+            $cartStmt->execute();
+            
+            
+
+            $response = "signupErrorMessage.innerHTML = 'Registered successfully!<br> Check your email to activate.';signupErrorMessage.style.color='green';
              
               const templateParams = {
         name:  '$username',
@@ -125,14 +133,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && !empty(file_get_contents("php://inp
     );
              
              ";
-             echo json_encode($response);
-         } else {
-             $response = "signupErrorMessage.textContent = 'Error registering user';";
-             echo json_encode($response);
-         }
 
-
-
+            echo json_encode($response);
+        } else {
+            $response = "signupErrorMessage.textContent = 'Error registering user';";
+            echo json_encode($response);
+        }
     }
 } else {
     $response = "signupErrorMessage.textContent = 'Invalid request';";
@@ -140,4 +146,3 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && !empty(file_get_contents("php://inp
 }
 
 $conn = null; // Close the connection
-?>

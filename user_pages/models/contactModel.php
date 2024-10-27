@@ -1,5 +1,5 @@
 <?php
-class contactModel 
+class contactModel extends Dbh
 {
     private $name;
     private $email;
@@ -28,20 +28,10 @@ class contactModel
         $dbname = "tick&style";
 
 
-        try {
-
-            $dsn = 'mysql:host=' . $host . ';dbname=' . $dbname;
-            $conn = new PDO($dsn, $username, $password);
-            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            return $conn;
-            echo $conn;
-        } catch (PDOException $e) {
-            echo ("Connection failed: " . $e->getMessage());
-        }
-    
+      
         $sql = "INSERT INTO `contact_us`(`id`, `name`, `email`, `phone_number`, `subject`, `message`) VALUES (':name,':email',':phone_number',':subject',':messege')";
-         $conntect=new Dbh();
-        $stmt =$this->$conn->prepare($conn,$sql);
+    
+        $stmt =$this->connect()->prepare($sql);
         $stmt->execute([':name', $name],[':email', $email],[':phone_number', $phone_number],[':subject',$subject],[':message', $message]);
          
            // Execute the statement
