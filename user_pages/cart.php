@@ -172,8 +172,10 @@
                             <h5>Total</h5>
                             <h5>$160</h5>
                         </div>
-                        <button class="btn btn-block btn-primary  bg-danger text-white font-weight-bold my-3 py-3">Proceed To Checkout</button>
-                    </div>
+                        <button type="button" class="btn btn-primary bg-danger text-white font-weight-bold my-2 py-3 w-100">Check Out</button>
+
+  
+
                 </div>
             </div>
         </div>
