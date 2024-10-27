@@ -33,9 +33,6 @@
     }
                     }
                     
-                    
-                    
-                    
                     ?>
                     <tbody class="align-middle">
                         <tr>

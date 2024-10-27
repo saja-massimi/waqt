@@ -1,106 +1,65 @@
-<?php  include("../widgets/navbar.php");?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shopping Cart</title>
-    <link rel="icon" href="./assets/logotitle.png" type="image/png"> <!-- Favicon -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Modal Example</title>
     <style>
-        .header3, hr, .text-item, a {
-          
-        }
-        .Total {
-         
-        }
-        .btn {
-          
-            
-        }
-        .btn:hover {
-          
-        }
-        .card {
-            border-radius: 15px;
-        }
+    .modal-img-fit {
+        width: 100%;    /* Make the image span the full width of the modal */
+        height: auto;   /* Maintain aspect ratio */
+    }
     </style>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-  <div class="container py-4">
-    <div class="row">
-      <!-- Cart Section -->
-      <div class="col-md-6">
-        <div class="card shopping-cart">
-          <div class="card-body">
-            <h3 class="mb-5 pt-2 text-center fw-bold text-uppercase header3">Your Products</h3>
-  
-            <!-- Cart items will be injected here -->
-            <div class="cart-items-container"></div>
-  
-            <!-- Discount and Total price -->
-            <div class="d-flex justify-content-between px-3">
-              <p class="fw-bold">Discount:</p>
-              <p class="fw-bold">-</p>
+
+<?php include("../widgets/navbar.php"); ?>
+
+<!-- Button to Open Modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Open Payment Modal</button>
+
+<!-- Modal Structure -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+    <div class="modal-header">
+    <h5 class="modal-title" id="exampleModalLabel">
+        <img src="../img/gallery/public.avif" class="modal-img-fit" alt="...">
+    </h5>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+</div>
+      <div class="modal-body">
+        <form id="paymentForm">
+          <div class="mb-3">
+            <input type="text" id="typeText" name="cardNumber" class="form-control" minlength="16" maxlength="16" placeholder="Card Number" required>
+          </div>
+          <div class="mb-3">
+            <input type="text" id="typeName" name="nameOnCard" class="form-control" placeholder="Name on Card" required>
+          </div>
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <input type="text" id="typeExp" name="expiration" class="form-control" minlength="5" maxlength="7" placeholder="Expiration (MM/YY)" required>
             </div>
-            <div class="d-flex justify-content-between p-2 mb-2 Total">
-              <h5 class="fw-bold mb-0">Total:</h5>
-              <h5 class="fw-bold mb-0 total-price">$0.00</h5>
+            <div class="col-md-6 mb-3">
+              <input type="password" id="typeCvv" name="cvv" class="form-control" minlength="3" maxlength="3" placeholder="CVV" required>
             </div>
           </div>
-        </div>
+          <button type="submit" class="btn btn-primary">Submit Payment</button>
+        </form>
       </div>
-
-      <!-- Payment Section -->
-      <div class="col-md-6">
-        <div class="card">
-          <div class="card-body">
-            <h3 class="mb-5 pt-2 text-center fw-bold text-uppercase header3">Payment</h3>
-            <form class="mb-5" id="paymentForm">
-              <div class="form-outline mb-5">
-                <input type="text" id="typeText" class="form-control form-control-lg" size="17" minlength="16" maxlength="16" />
-                <label class="form-label" for="typeText">Card Number</label>
-                <div id="cardNumberError" class="error-message"></div>
-              </div>
-              <div class="form-outline mb-5">
-                <input type="text" id="typeName" class="form-control form-control-lg" size="17" />
-                <label class="form-label" for="typeName">Name on card</label>
-                <div id="nameOnCardError" class="error-message"></div>
-              </div>
-              <div class="row">
-                <div class="col-md-6 mb-5">
-                  <div class="form-outline">
-                    <input type="text" id="typeExp" class="form-control form-control-lg" size="" minlength="5" maxlength="7" />
-                    <label class="form-label" for="typeExp">Expiration</label>
-                    <div id="expirationError" class="error-message"></div>
-                  </div>
-                </div>
-                <div class="col-md-6 mb-5">
-                  <div class="form-outline">
-                    <input type="password" id="typeCvv" class="form-control form-control-lg" size="3" minlength="3" maxlength="3" />
-                    <label class="form-label" for="typeCvv">CVV</label>
-                    <div id="cvvError" class="error-message"></div>
-                  </div>
-                </div>
-              </div>
-
-              <input type="checkbox" id="Terms" name="Terms" value="agree" required>
-              <label for=""><p class="mb-5">I have read <a href="terms&conditions/termsAndPolicy.html">Terms & Conditions</a> and agree</p></label>
-              <div id="paymentSuccessMessage" style="color: green; display: none; text-align: center;"></div><br>
-              <button type="submit" class="btn btn-lg btn-primary bg-danger text-white">Buy now</button>
-              <a href="index.html"><i class="fas fa-angle-left me-2 back-shopping"></i>Back to shopping</a>
-            </form>
-          </div>
-        </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
       </div>
     </div>
   </div>
+</div>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="addToCart.js"></script>
-  <script src="cart.js"></script>
+<?php include("../widgets/footer.php"); ?>
+
+<!-- Bootstrap JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
 </html>
-<?php  include("../widgets/footer.php");?>
