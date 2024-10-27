@@ -3,14 +3,12 @@ session_start();
 include('dbconnection.php');
 //echo $_SESSION['user'];
 
-//to check if the user login or not  
 if (!isset($_SESSION['user'])) {
-    // Redirect to login page if not logged in
     header("Location: ../auth/index.html");
     exit();
 }
-$updateMessage = ""; // Variable to store the message for SweetAlert
-$updateMessage1 = ""; // Variable to store the message for SweetAlert
+$updateMessage = ""; 
+$updateMessage1 = ""; 
 
 $user_id = $_SESSION['user'];
 

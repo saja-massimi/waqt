@@ -64,7 +64,9 @@ $stmt = $connection->prepare($query);
 
 $stmt->execute($params);
 $watches = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
 ?>
+
 
 <?php foreach ($watches as $watch): ?>
     <div class="col-lg-4 col-md-6 col-sm-6 pb-1">
@@ -72,16 +74,19 @@ $watches = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <div class="product-img position-relative overflow-hidden">
                 <img class="img-fluid w-80" src="<?php echo htmlspecialchars($watch['watch_img']); ?>" alt="<?php echo htmlspecialchars($watch['watch_name']); ?>">
                 <div class="product-action">
-                    <a class="btn btn-outline-dark btn-square" href="#"><i class="fa fa-shopping-cart"></i></a>
-                    <a class="btn btn-outline-dark btn-square" href="#"><i class="far fa-heart"></i></a>
-                    <a class="btn btn-outline-dark btn-square" href="#"><i class="fa fa-search"></i></a>
+                        <form action="../user_pages/controllers/cartController.php" method="POST">
+                            <input type="hidden" name="product_id" value="<?= htmlspecialchars($watch['watch_id']) ?>">
+                            <button type="submit" class="btn btn-outline-dark btn-square"><i class="fa fa-shopping-cart"></i></button>
+                        </form>
+                    <a class="btn btn-outline-dark btn-square" href="./wishlist.php?<?= $watch['watch_id'] ?>"><i class="far fa-heart"></i></a>
+                    <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-search"></i></a>
                 </div>
             </div>
             <div class="text-center py-4">
                 <a class="h6 text-decoration-none text-truncate" href="#"><?php echo htmlspecialchars($watch['watch_name']); ?></a>
                 <div class="d-flex align-items-center justify-content-center mt-2">
                     <h5><?php echo htmlspecialchars($watch['watch_price']); ?> JOD</h5>
-                    <h6 class="text-muted ml-2"><del><?php echo htmlspecialchars($watch['watch_price'] - 10); ?> JOD</del></h6>
+                    <h6 class="text-muted ml-2"><del><?php echo htmlspecialchars($watch['watch_price'] + rand(10, 20)); ?> JOD</del></h6>
                 </div>
             </div>
         </div>

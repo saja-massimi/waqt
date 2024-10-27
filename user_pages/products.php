@@ -2,9 +2,9 @@
 <html lang="en">
 
 <?php
-include '../user_pages/models/dbh.php';
-include '../user_pages/models/productsModel.php';
-include '../user_pages/controllers/productsController.php';
+require_once '../user_pages/models/dbh.php';
+require_once '../user_pages/models/productsModel.php';
+require_once '../user_pages/controllers/productsController.php';
 
 $products = new productsController();
 $allProducts = $products->showAllProducts();
@@ -181,23 +181,28 @@ $materials = $products->AllMaterials();
 
                     <div id="productList" class="row">
                         <?php
-
                         foreach ($allProducts as $product) { ?>
                             <div class="col-lg-4 col-md-6 col-sm-6 pb-1">
                                 <div class="product-item bg-light mb-4">
                                     <div class="product-img position-relative overflow-hidden">
                                         <img class="img-fluid w-100" src="<?php echo $product['watch_img']; ?>" alt="<?php echo $product['watch_name']; ?>">
                                         <div class="product-action">
-                                            <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a>
-                                            <a class="btn btn-outline-dark btn-square" href="./wishlist.php?<?= $product['watch_id'] ?>"><i class="far fa-heart"></i></a>
-                                            <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-search"></i></a>
+
+                                            <form action="../user_pages/controllers/cart" method="POST" style="display:inline;">
+                                                <input type="hidden" name="product_id" value="<?= htmlspecialchars($product['watch_id']) ?>">
+                                                <button type="submit" class="btn btn-outline-dark btn-square"><i class="fa fa-shopping-cart"></i></button>
+                                            </form>
+
+                                            <a class="btn btn-outline-dark btn-square" href="../user_pages/wishlist.php?id=<?= $product['watch_id'] ?>"><i class="far fa-heart"></i></a>
+                                            <a class="btn btn-outline-dark btn-square" href="../user_pages/product-details.php?id=<?= $product['watch_id'] ?>"><i class="fa fa-search"></i></a>
+
                                         </div>
                                     </div>
                                     <div class="text-center py-4">
                                         <a class="h6 text-decoration-none text-truncate" href=""><?php echo $product['watch_name']; ?></a>
                                         <div class="d-flex align-items-center justify-content-center mt-2">
                                             <h5><?php echo $product['watch_price']; ?> JOD</h5>
-                                            <h6 class="text-muted ml-2"><del><?php echo $product['watch_price'] - 10; ?> JOD</del></h6>
+                                            <h6 class="text-muted ml-2"><del><?php echo $product['watch_price'] + rand(10, 20); ?> JOD</del></h6>
                                         </div>
 
                                     </div>
