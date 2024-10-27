@@ -89,16 +89,15 @@ $total = 0;
 
 <?php include("../widgets/footer.php"); ?>
 
-<!-- JavaScript to Handle AJAX for Cart Actions -->
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script>
     $(document).ready(function() {
-        // Handle quantity adjustments and product removal with AJAX
+
         $('.adjust-quantity').on('click', function(e) {
             e.preventDefault();
             const action = $(this).data('action');
             const productId = $(this).data('product-id');
-            const quantity = $(this).data('quantity'); // Get current quantity
+            const quantity = $(this).data('quantity'); 
 
             $.ajax({
                 type: 'POST',

@@ -38,7 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             break;
 
         case 'decrease':
-            $newQuantity = max(1, $quantity - 1); // Ensure quantity doesn't go below 1
+            $newQuantity = max(1, $quantity - 1);
             if ($cartModel->updateProductQuantity($cartID, $product_id, $newQuantity)) {
                 echo json_encode(['status' => 'success', 'message' => 'Quantity decreased']);
             } else {
@@ -49,6 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         case 'add':
             if ($cartModel->addProductToCart($cartID, $product_id)) {
                 echo json_encode(['status' => 'success', 'message' => 'Product added to cart']);
+                header('Location: ../cart.php');
             } else {
                 echo json_encode(['status' => 'error', 'message' => 'Failed to add product to cart']);
             }
