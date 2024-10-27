@@ -1,4 +1,4 @@
-<?php  include("C:/xampp/htdocs/php-project/waqt/widgets/navbar.php");?>
+<?php  include("../widgets/navbar.php");?>
 
 
 <body>
@@ -13,7 +13,7 @@
                 <div id="product-carousel" class="carousel slide" data-ride="carousel">
                     <div class="carousel-inner bg-light">
                         <div class="carousel-item active">
-                            <img class="w-100 h-100" src="img/product-1.jpg" alt="Image">
+                            <img class="w-50 h-50" src="img/product-1.jpg" alt="Image">
                         </div>
                         <div class="carousel-item">
                             <img class="w-100 h-100" src="img/product-2.jpg" alt="Image">

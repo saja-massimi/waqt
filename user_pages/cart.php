@@ -197,6 +197,7 @@ var qunFields = document.getElementsByClassName("qun");
 var deleteButtons = document.getElementsByClassName("btn-delete"); // الحصول على جميع أزرار الحذف
 
 
+
 // Add event listener for each '+' button
 for (let i = 0; i < plusButtons.length; i++) {
     plusButtons[i].addEventListener('click', function() {
@@ -215,14 +216,31 @@ for (let i = 0; i < minButtons.length; i++) {
     });
 }
 
+
+
+//   btn-delete=>Swal.fire({
+//   title: "Are you sure?",
+//   text: "You won't be able to revert this!",
+//   icon: "warning",
+//   showCancelButton: true,
+//   confirmButtonColor: "#3085d6",
+//   cancelButtonColor: "#d33",
+//   confirmButtonText: "Yes, delete it!"
+// }).then((result) => {
+//   if (result.isConfirmed) {
+//     Swal.fire({
+//       title: "Deleted!",
+//       text: "Your file has been deleted.",
+//       icon: "success"
+//     });
+//   }
+// });
 for (let i = 0; i < deleteButtons.length; i++) {
         deleteButtons[i].addEventListener('click', function() {
             let row = this.parentElement.parentElement; // الحصول على الصف الذي يحتوي على زر الحذف
             row.remove(); // حذف الصف
         });
     }
-
-
     
 </script>
     <!-- JavaScript Libraries -->

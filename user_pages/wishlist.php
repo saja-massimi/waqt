@@ -15,12 +15,12 @@
 
 <body>
     <!-- navbar  start-->
-    <?php include 'widgets/navbar.php'; ?>
+    <?php include '../widgets/navbar.php'; ?>
 
 
 
     <!-- Footer Start-->
-    <?php include 'widgets/footer.php'; ?>
+    <?php include '../widgets/footer.php'; ?>
 
 </body>
 
