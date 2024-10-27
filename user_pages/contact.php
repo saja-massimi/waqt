@@ -243,6 +243,7 @@
             e.preventDefault();
             sendEmail();
         });
+        
     </script>
 
 <script
