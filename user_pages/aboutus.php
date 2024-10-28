@@ -6,7 +6,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>About Us</title>
-  <link href="image/logo1.png" type="imge/x-icon" rel="icon"> <!--img icon-->
+  <link href="image/logo1.png" type="imge/x-icon" rel="icon">
   <link href="../css/style.css" rel="stylesheet">
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
@@ -172,7 +172,7 @@
         <div class="col-md-6">
           <div class="About-text">
             <h1>About Us</h1>
-            <p><span>Waqet</span> offers a carefully curated selection of watches that combine classic craftsmanship with modern design. We partner with trusted brands and artisans to ensure our watches are elegant, durable, and high-quality. Customer satisfaction is our priority, with personalized service from choosing the perfect watch to after-sale support. At <span>waqet</span>, we’re dedicated to helping you make the most of your time.
+            <p><span>Waqt</span> offers a carefully curated selection of watches that combine classic craftsmanship with modern design. We partner with trusted brands and artisans to ensure our watches are elegant, durable, and high-quality. Customer satisfaction is our priority, with personalized service from choosing the perfect watch to after-sale support. At <span>Waqt</span>, we’re dedicated to helping you make the most of your time.
             </p>
             <a href="contact.php" id="Contact-a" class="btn d-flex justify-content-center w-25">Contact Us</a>
           </div>
@@ -203,7 +203,7 @@
         <div class="card h-100">
           <div class="card-body">
             <h5 class="card-title">Saja Al-Massimi</h5>
-            <p class="card-text">CIS <br><span>Scrum Master</span></p>
+            <p class="card-text">Software Engineer <br><span>Scrum Master</span></p>
             <div class="social-icons">
               <a href="https://github.com/saja-massimi" target="_blank" class="card-link"><i class="fa-brands fa-square-github"></i></a>
               <a href="https://www.linkedin.com/in/saja-al-massimi/" target="_blank" class="card-link"><i class="fa-brands fa-linkedin"></i></a>

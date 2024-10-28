@@ -11,6 +11,7 @@ $allProducts = $products->showAllProducts();
 $brands = $products->AllBrands();
 $materials = $products->AllMaterials();
 
+$cat = $_GET['category'] ?? null;
 ?>
 
 <?php include '../widgets/head.php'; ?>
@@ -82,8 +83,8 @@ $materials = $products->AllMaterials();
                 </h5>
 
                 <div class="bg-light p-4 mb-30">
-                    <div class="slider-label">Price: <span id="priceRangeValue">50 JD</span></div>
-                    <input type="range" class="form-range" name="priceRange" id="priceRange" min="0" max="1000" value="50" step="10">
+                    <div class="slider-label">Price: <span id="priceRangeValue">300 JD</span></div>
+                    <input type="range" class="form-range" name="priceRange" id="priceRange" min="0" max="1000" value="300" step="10">
                 </div>
 
 
@@ -95,19 +96,20 @@ $materials = $products->AllMaterials();
                 </h5>
                 <div class="bg-light p-4 mb-30">
                     <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                        <input type="checkbox" name="category[]" class="custom-control-input" id="all" value="" checked>
+                        <input type="checkbox" name="category[]" class="custom-control-input" id="all" value="" <?php echo empty($cat) ? 'checked' : ''; ?>>
                         <label class="custom-control-label" for="all">All Categories</label>
                     </div>
                     <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                        <input type="checkbox" name="category[]" class="custom-control-input" id="women" value="female">
+                        <input type="checkbox" name="category[]" class="custom-control-input" id="women" value="female" <?php echo $cat === 'women' ? 'checked' : ''; ?>>
                         <label class="custom-control-label" for="women">Women</label>
                     </div>
                     <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                        <input type="checkbox" name="category[]" class="custom-control-input" id="men" value="male">
+                        <input type="checkbox" name="category[]" class="custom-control-input" id="men" value="male" <?php echo $cat === 'men' ? 'checked' : ''; ?>>
                         <label class="custom-control-label" for="men">Men</label>
                     </div>
                 </div>
                 <!-- Category Filter End -->
+
 
                 <!-- Brand Filter Start -->
                 <h5 class="section-title position-relative text-uppercase mb-3">

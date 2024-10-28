@@ -22,7 +22,6 @@
             <a href="index.php" class="btn btn-outline-light py-2 px-4 mt-3 animate__animated animate__fadeInUp">Shop Now</a>
         </div>
     </section>
-    <!-- Navbar End -->
 
     <!-- Carousel Start -->
     <div class="container-fluid mb-3">
@@ -116,7 +115,7 @@
 
     <!-- Categories Start -->
     <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">Our Categories</span></h2>
-    <div class="container-fluid pt-5 pb-3">
+    <div class="container-fluid pt-5 pb-3" id="categories">
         <div class="row px-xl-5">
             <div class="col-md-6">
                 <div class="product-offer mb-30" style="height: 300px;">
@@ -124,7 +123,7 @@
                     <div class="offer-text">
                         <h6 class="text-white text-uppercase"></h6>
                         <h3 class="text-white mb-3">Men's luxury always shines</h3>
-                        <a href="" class="btn btn-outline-light py-2 px-4 mt-3 animate__animated animate__fadeInUp">Shop Now</a>
+                        <a href="./products.php?category=men" class="btn btn-outline-light py-2 px-4 mt-3 animate__animated animate__fadeInUp">Shop Now</a>
                     </div>
                 </div>
             </div>
@@ -133,7 +132,7 @@
                     <img class="img-fluid" src="../img/gallery/new_product3.png" alt="">
                     <div class="offer-text">
                         <h3 class="text-white mb-3">Women's luxury always shines</h3>
-                        <a href="" class="btn btn-outline-light py-2 px-4 mt-3 animate__animated animate__fadeInUp">Shop Now</a>
+                        <a href="./products.php?category=women" class="btn btn-outline-light py-2 px-4 mt-3 animate__animated animate__fadeInUp">Shop Now</a>
                     </div>
                 </div>
             </div>
