@@ -1,11 +1,11 @@
 <?php
-
+require('dbconnection.php');
 // Initialize variables to store errors and form data
 $errors = ['cardNumber' => '', 'nameOnCard' => '', 'expiration' => '', 'cvv' => ''];
 $successMessage = '';
 
 // Process form when submit button is pressed
-if (isset($_POST['submitBtn'])) {
+
     // Validation functions
     function validateCardNumber($cardNumber) {
         return preg_match('/^\d{16}$/', str_replace(' ', '', $cardNumber));
@@ -46,37 +46,27 @@ if (isset($_POST['submitBtn'])) {
         $successMessage = "Payment successful!";
         // Here you would add code to process the payment
     }
-}
 
 
-if(isset($_POST['add_student'])){
-$fname=$_POST['fname'];
-// echo $fname;
-$email=$_POST['email'];
-$mobile=$_POST['mobile'];
-$password=$_POST['password'];
-$file_image=$_FILES['image']['name'];
-$tempname=$_FILES['image']['tmp_name'];
-echo $file_image;
-$folder='image/'.$file_image;
-
-move_uploaded_file($tempname,$folder);
-// INSERT INTO `crud`(`user_id`, `user_name`, `user_email`, `user_mobile`, `user_password`) VALUES ('[value-1]','[value-2]','[value-3]','[value-4]','[value-5]')
-
-$query="INSERT INTO `crud`(`user_name`, `user_email`, `user_mobile`,`image`, `user_password`) VALUES (:user_name,:user_email,:user_mobile,:user_image,:user_password)";
-$statment=$dbconnection->prepare($query);
-$data=[
-    'user_name' => $fname,
-    'user_email' => $email,
-    'user_mobile' => $mobile,
-    'user_image'=>$folder,
-    'user_password' => $password,
+    if(isset($_POST['submitBtn'])){
+        $cardNumber = $_POST['cardNumber'];
+        $nameOnCard = $_POST['nameOnCard'];
+        $expiration = $_POST['expiration'];
+        $cvv = $_POST['cvv'];
+        
+        $query = "INSERT INTO `paypal` (`card_number`, `name_on_card`, `expiration`, `cvv`) VALUES (:cardNumber, :nameOnCard, :expiration, :cvv)";
+        $statement = $dbconnection->prepare($query);
+        
+        $data = [
+            'cardNumber' => $cardNumber,
+            'nameOnCard' => $nameOnCard,
+            'expiration' => $expiration,
+            'cvv' => $cvv,
+        ];
+        
+        $statement->execute($data);
+    }
     
-];
-
-$statment->execute($data);
-header('location:index.php?message=user add sucessfully');
-}
 
 
 ?>

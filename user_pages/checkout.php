@@ -161,7 +161,7 @@
                     <div class="form-group">
                    <div class="">
                    <button type="button" class="btn btn-primary bg-warning text-white font-weight-bold my-2 py-3 w-100" data-bs-toggle="modal" data-bs-target="#exampleModal">Paypal</button>
-
+<?php include "paymentvalid.php"?>
 <!-- Modal for PayPal Payment -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -194,7 +194,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn bg-secondary text-white" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn bg-warning text-white " data-bs-dismiss="modal">Close</button>
                     <button type="submit" class="btn btn-primary bg-danger text-white" name="submitBtn">Submit Payment</button>
                 </div>
             </form>

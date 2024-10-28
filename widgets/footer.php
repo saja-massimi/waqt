@@ -69,6 +69,8 @@
     <!-- Contact Javascript File -->
     <script src="mail/jqBootstrapValidation.min.js"></script>
     <script src="mail/contact.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="path/to/owl.carousel.min.js"></script>  
     <!-- Bootstrap JS (5.x) -->
 <!-- Bootstrap JS and Popper.js for Bootstrap Modals -->
 

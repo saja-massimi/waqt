@@ -30,6 +30,9 @@ if (isset($_SESSION['user'])) {
 
     <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="path/to/owl.carousel.min.css">
+<link rel="stylesheet" href="path/to/owl.theme.default.min.css">
+
 
     <!-- Libraries Stylesheet -->
     <link href="lib/animate/animate.min.css" rel="stylesheet">
@@ -38,19 +41,8 @@ if (isset($_SESSION['user'])) {
     <!-- Customized Bootstrap Stylesheet -->
     <link href="../css/style.css" rel="stylesheet">
     <style>
-        .vendor-carousel .bg-light {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 150px;
-            padding: 20px;
-        }
-
-    .vendor-carousel img {
-      max-width: 100%;
-      max-height: 100%;
-      object-fit: contain;
-    }
+       
+      
 
     @import url("https://fonts.googleapis.com/css?family=Josefin+Sans:200,300,400,500,600,700|Roboto:100,300,400,500,700&display=swap");
 

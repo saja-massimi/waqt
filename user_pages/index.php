@@ -19,7 +19,7 @@
         <div class="landing-content">
             <h1>Welcome to WAQT</h1>
             <p>Waqt offers elegant, <br>high-quality watches blending classic craftsmanship with modern design, <br>prioritizing customer satisfaction and personalized service.</p>
-            <a href="index.php" class="btn btn-outline-light py-2 px-4 mt-3 animate__animated animate__fadeInUp">Shop Now</a>
+            <a href="products.php" class="btn btn-outline-light py-2 px-4 mt-3 animate__animated animate__fadeInUp">Shop Now</a>
         </div>
     </section>
     <!-- Navbar End -->
@@ -115,7 +115,7 @@
 
 
     <!-- Categories Start -->
-    <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">Our Categories</span></h2>
+    <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class=" pr-3">Our Categories</span></h2>
     <div class="container-fluid pt-5 pb-3">
         <div class="row px-xl-5">
             <div class="col-md-6">
@@ -144,7 +144,7 @@
 
     <!-- Products Start -->
     <div class="container-fluid pt-5 pb-3">
-        <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">Featured Products</span></h2>
+        <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="pr-3">Featured Products</span></h2>
         <div class="row px-xl-5">
             <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
                 <div class="product-item bg-light mb-4">
@@ -192,7 +192,7 @@
 
     <!-- Products Start -->
     <div class="container-fluid pt-5 pb-3">
-        <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">Recent Products</span></h2>
+        <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class=" pr-3">Recent Products</span></h2>
         <div class="row px-xl-5">
             <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
                 <div class="product-item bg-light mb-4">
@@ -424,31 +424,29 @@
 
 
     <!-- Vendor Start -->
-    <div class="container-fluid py-5">
-        <div class="row px-xl-5">
-            <div class="col">
-                <div class="row owl-carousel vendor-carousel">
-                    <div class="bg-light p-4">
+    <div class="container-fluid  d-flex justify-content-between">
+        <div class="row px-xl-5 d-flex justify-content-between">
+            <div class=" d-flex justify-content-between">
+                <div class="row owl-carousel vendor-carousel" style=" margin:0; padding:0;">
+                    <div class="cpl bg-light p-4 d-flex justify-content-between w-auto">
                         <img src="../img/vendor-1.jpg" alt="Vendor 1">
                     </div>
-                    <div class="bg-light p-4">
+                    <div class=" col bg-light p-4 d-flex justify-content-between w-auto">
                         <img src="../img/vendor-2.jpg" alt="Vendor 2">
                     </div>
-                    <div class="bg-light p-4">
+                    <div class=" col bg-light p-4 d-flex justify-content-between w-auto">
                         <img src="../img/vendor-3.jpg" alt="Vendor 3">
                     </div>
-                    <div class="bg-light p-4">
+                    <div class=" colbg-light p-4 d-flex justify-content-between w-auto">
                         <img src="../img/vendor-4.jpg" alt="Vendor 4">
                     </div>
-                    <div class="bg-light p-4">
+                    <div class=" col bg-light p-4 d-flex justify-content-between w-auto">
                         <img src="../img/vendor-5.jpg" alt="Vendor 5">
                     </div>
-                    <div class="bg-light p-4">
+                    <div class=" col bg-light p-4 d-flex justify-content-between w-auto">
                         <img src="../img/vendor-6.jpg" alt="Vendor 6">
                     </div>
-                    <div class="bg-light p-4">
-                        <img src="../img/vendor-7.jpg" alt="Vendor 7">
-                    </div>
+                    
                 </div>
             </div>
         </div>
@@ -473,6 +471,22 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
     <script src="lib/easing/easing.min.js"></script>
     <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    <script>
+    $(document).ready(function(){
+        $('.vendor-carousel').owlCarousel({
+            loop: true,
+            margin: 0,
+            nav: false,
+            responsive: {
+                0: { items: 1 },
+                576: { items: 3 },
+                768: { items: 4 },
+                992: { items: 5 },
+                1200: { items: 7 }
+            }
+        });
+    });
+</script>
 
     <!-- Contact Javascript File -->
     <script src="../mail/jqBootstrapValidation.min.js"></script>
