@@ -15,34 +15,34 @@ if (isset($_SESSION['user'])) {
 ?>
 
 <head>
-  <meta charset="utf-8">
-  <title>WAQT</title>
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <meta content="watches ecommerce " name="keywords">
-  <meta content="An ecommerce website for selling watches" name="description">
-  <link href="../img/logo1.png" rel="icon">
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-  <link href="../lib/animate/animate.min.css" rel="stylesheet">
-  <link href="../lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-  <link href="../css/style.css" rel="stylesheet">
+    <meta charset="utf-8">
+    <title>WAQT</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="watches ecommerce " name="keywords">
+    <meta content="An ecommerce website for selling wathces" name="description">
 
-  <style>
-    @import url("https://fonts.googleapis.com/css?family=Josefin+Sans:200,300,400,500,600,700|Roboto:100,300,400,500,700&display=swap");
+    <!-- Favicon -->
+    <link href="../img/logo1.png" rel="icon">
 
-    .vendor-carousel .bg-light {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 150px;
-      padding: 20px;
-    }
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 
-    .vendor-carousel img {
-      max-width: 100%;
-      max-height: 100%;
-      object-fit: contain;
-    }
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="path/to/owl.carousel.min.css">
+<link rel="stylesheet" href="path/to/owl.theme.default.min.css">
+
+
+    <!-- Libraries Stylesheet -->
+    <link href="lib/animate/animate.min.css" rel="stylesheet">
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="../css/style.css" rel="stylesheet">
+    <style>
+       
+      
 
 
     * {
@@ -174,8 +174,5 @@ if (isset($_SESSION['user'])) {
         </nav>
       </div>
     </div>
-  </div>
-  <!-- Navbar End -->
-</body>
-
-</html>
+</div>
+<!-- Navbar End -->

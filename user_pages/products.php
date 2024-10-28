@@ -79,7 +79,7 @@ $cat = $_GET['category'] ?? null;
 
                 <!-- Price Filter Start -->
                 <h5 class="section-title position-relative text-uppercase mb-3">
-                    <span class="bg-secondary pr-3">Filter by price</span>
+                    <span class=" pr-3">Filter by price</span>
                 </h5>
 
                 <div class="bg-light p-4 mb-30">
@@ -92,7 +92,7 @@ $cat = $_GET['category'] ?? null;
 
                 <!-- Category Filter Start -->
                 <h5 class="section-title position-relative text-uppercase mb-3">
-                    <span class="bg-secondary pr-3">Filter by Category</span>
+                    <span class="pr-3">Filter by Category</span>
                 </h5>
                 <div class="bg-light p-4 mb-30">
                     <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
@@ -113,7 +113,7 @@ $cat = $_GET['category'] ?? null;
 
                 <!-- Brand Filter Start -->
                 <h5 class="section-title position-relative text-uppercase mb-3">
-                    <span class="bg-secondary pr-3">Filter by brand</span>
+                    <span class=" pr-3">Filter by brand</span>
                 </h5>
                 <div class="bg-light p-4 mb-30">
 
@@ -132,7 +132,7 @@ $cat = $_GET['category'] ?? null;
 
                 <!-- Strap Material Filter Start -->
                 <h5 class="section-title position-relative text-uppercase mb-3">
-                    <span class="bg-secondary pr-3">Filter by Strap Material</span>
+                    <span class=" pr-3">Filter by Strap Material</span>
                 </h5>
                 <div class="bg-light p-4 mb-30">
 
