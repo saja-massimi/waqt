@@ -63,7 +63,7 @@ $stmt = $connection->prepare($query);
 
 $stmt->execute($params);
 $watches = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
+$cat = $_GET['category'] ?? null;
 ?>
 
 
@@ -95,3 +95,5 @@ $watches = $stmt->fetchAll(PDO::FETCH_ASSOC);
         </div>
     </div>
 <?php endforeach; ?>
+
+<script src="../fliteringProducts.js"></script>

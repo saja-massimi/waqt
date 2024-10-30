@@ -44,7 +44,6 @@ if (isset($_SESSION['user'])) {
        
       
 
-    @import url("https://fonts.googleapis.com/css?family=Josefin+Sans:200,300,400,500,600,700|Roboto:100,300,400,500,700&display=swap");
 
     * {
       font-family: "Josefin Sans", sans-serif;
@@ -139,8 +138,11 @@ if (isset($_SESSION['user'])) {
               <a href="../user_pages/index.php" class="nav-item nav-link active">Home</a>
               <a href="../user_pages/products.php" class="nav-item nav-link">Products</a>
               <div class="nav-item dropdown">
-                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Categories</a>
-               
+                <a href="../user_pages/index.php#categories" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Categories</a>
+                <div class="dropdown-menu bg-primary rounded-0 border-0 m-0">
+                  <a href="#" class="dropdown-item">Women</a>
+                  <a href="#" class="dropdown-item">Men</a>
+                </div>
               </div>
               <a href="contact.php" class="nav-item nav-link">Contact</a>
               <a href="aboutus.php" class="nav-item nav-link">About Us</a>

@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const sortLinks = document.querySelectorAll('.dropdown-item[data-sort]');
 
     // Set "All" checkboxes to checked
-    allCategoryCheckbox.checked = true;
+    // allCategoryCheckbox.checked = true;
     allBrandCheckbox.checked = true;
     allMaterialCheckbox.checked = true;
 
@@ -29,6 +29,7 @@ document.addEventListener('DOMContentLoaded', function () {
     handleAllCheckbox(allCategoryCheckbox, categoryCheckboxes);
     handleAllCheckbox(allBrandCheckbox, brandCheckboxes);
     handleAllCheckbox(allMaterialCheckbox, materialCheckboxes);
+
     // Function to apply filters
     function applyFilters() {
         const productList = document.getElementById('productList');
