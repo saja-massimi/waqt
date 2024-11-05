@@ -38,4 +38,3 @@ if ($inputData) {
 } else {
     echo json_encode(["success" => false, "message" => "Invalid input."]);
 }
-?>
