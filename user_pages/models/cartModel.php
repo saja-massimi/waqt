@@ -24,13 +24,39 @@ class cartModel extends Dbh
           $existingProduct = $check_stmt->fetch();
 
           if ($existingProduct) {
-               $update_query = "UPDATE cart_items SET quantity = quantity + 1 WHERE cart_id = ? AND watch_id = ?";
+               if ($this->getWatchQuantity($product_id) <= $existingProduct['quantity']) {
+                    return false;
+               }
+               $update_query = "UPDATE cart_items SET quantity = quantity + 1 WHERE cart_id = ?  AND watch_id = ?";
                $update_stmt = $pdo->prepare($update_query);
                return $update_stmt->execute([$cartID, $product_id]);
           } else {
                $cart_query = "INSERT INTO cart_items (cart_id, watch_id, quantity) VALUES (?, ?, ?)";
                $cart_stmt = $pdo->prepare($cart_query);
                return $cart_stmt->execute([$cartID, $product_id, 1]);
+          }
+     }
+
+     public function addProductWithQuantity($cartID, $product_id, $quantity)
+     {
+          $pdo = $this->connect();
+
+          $check_query = "SELECT * FROM cart_items WHERE cart_id = ? AND watch_id = ? AND is_deleted = 0";
+          $check_stmt = $pdo->prepare($check_query);
+          $check_stmt->execute([$cartID, $product_id]);
+          $existingProduct = $check_stmt->fetch();
+
+          if ($existingProduct) {
+               if ($this->getWatchQuantity($product_id) <= $existingProduct['quantity']) {
+                    return false;
+               }
+               $update_query = "UPDATE cart_items SET quantity = quantity + ? WHERE cart_id = ?  AND watch_id = ?";
+               $update_stmt = $pdo->prepare($update_query);
+               return $update_stmt->execute([$quantity, $cartID, $product_id]);
+          } else {
+               $cart_query = "INSERT INTO cart_items (cart_id, watch_id, quantity) VALUES (?, ?, ?)";
+               $cart_stmt = $pdo->prepare($cart_query);
+               return $cart_stmt->execute([$cartID, $product_id, $quantity]);
           }
      }
 
@@ -49,6 +75,7 @@ class cartModel extends Dbh
           $product_query = "SELECT * FROM watches WHERE watch_id = ? AND is_deleted = 0";
           $product_stmt = $pdo->prepare($product_query);
           $product_stmt->execute([$watch_id]);
+
           return $product_stmt->fetch();
      }
 
@@ -110,5 +137,14 @@ class cartModel extends Dbh
           $cart_stmt = $pdo->prepare($cart_query);
           $cart_stmt->execute([$cartID, $product_id]);
           return $cart_stmt->fetch()['quantity'];
+     }
+
+     public function getWatchQuantity($product_id)
+     {
+          $pdo = $this->connect();
+          $product_query = "SELECT quantity FROM watches WHERE watch_id = ?";
+          $product_stmt = $pdo->prepare($product_query);
+          $product_stmt->execute([$product_id]);
+          return $product_stmt->fetch()['quantity'];
      }
 }

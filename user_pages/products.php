@@ -5,16 +5,22 @@
 require_once '../user_pages/models/dbh.php';
 require_once '../user_pages/models/productsModel.php';
 require_once '../user_pages/controllers/productsController.php';
+$searchQuery = $_POST['search'] ?? "";
 
 $products = new productsController();
-$allProducts = $products->showAllProducts();
+$allProducts = $products->showAllProducts($searchQuery);
 $brands = $products->AllBrands();
 $materials = $products->AllMaterials();
+$count = $products->getAllProductsCount();
 
 $cat = $_GET['category'] ?? null;
+
+
 ?>
 
-<?php include '../widgets/head.php'; ?>
+<?php include("../widgets/head.php"); ?>
+<?php include("../widgets/chatbot-css.php"); ?>
+
 <style>
     .product-item.list-view {
         display: flex;
@@ -50,8 +56,9 @@ $cat = $_GET['category'] ?? null;
 
 <body>
 
+
     <!-- Navbar Start -->
-    <?php include '../widgets/navbar.php'; ?>
+    <?php include("../widgets/navbar.php"); ?>
     <!-- Navbar End -->
 
 
@@ -59,14 +66,21 @@ $cat = $_GET['category'] ?? null;
     <div class="container-fluid">
         <div class="row px-xl-5">
             <div class="col-12">
-                <nav class="breadcrumb bg-light mb-30">
-                    <a class="breadcrumb-item text-dark" href="./index.php">Home</a>
-                    <a class="breadcrumb-item text-dark" href="./products.php">Watches</a>
-                    <span class="breadcrumb-item active">Watches List</span>
+                <nav class="breadcrumb bg-light mb-30 d-flex justify-content-between align-items-center">
+
+                    <div class=" d-flex justify-content-between">
+                        <a class="breadcrumb-item text-dark" href="./index.php">Home</a>
+                        <span class="breadcrumb-item active">Watches List</span>
+                    </div>
+                    <form class="d-flex" action="" method="post">
+                        <input class="form-control me-2" name="search" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-dark" type="submit" name="submit_search">Search</button>
+                    </form>
                 </nav>
             </div>
         </div>
     </div>
+
     <!-- Breadcrumb End -->
 
 
@@ -85,8 +99,8 @@ $cat = $_GET['category'] ?? null;
                 <div class="bg-light p-4 mb-30">
                     <div class="slider-label">Price: <span id="priceRangeValue">300 JD</span></div>
                     <input type="range" class="form-range" name="priceRange" id="priceRange" min="0" max="1000" value="300" step="10">
+                    <input type="hidden" id="count" value=<?= $count ?>>
                 </div>
-
 
                 <!-- Price Filter End -->
 
@@ -105,6 +119,7 @@ $cat = $_GET['category'] ?? null;
                     </div>
                     <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
                         <input type="checkbox" name="category[]" class="custom-control-input" id="men" value="male" <?php echo $cat === 'men' ? 'checked' : ''; ?>>
+
                         <label class="custom-control-label" for="men">Men</label>
                     </div>
                 </div>
@@ -163,12 +178,15 @@ $cat = $_GET['category'] ?? null;
                     <div class="col-12 pb-1">
                         <div class="d-flex align-items-center justify-content-between mb-4">
                             <div>
-                                <button class="btn btn-sm btn-light"><i class="fa fa-th-large"></i></button>
-                                <button class="btn btn-sm btn-light ml-2"><i class="fa fa-bars"></i></button>
+                                <button class="btn btn-sm btn-light" id="show_normal"><i class="fa fa-th-large"></i></button>
+                                <button class="btn btn-sm btn-light ml-2" id="show_line"><i class="fa fa-bars"></i></button>
+                                <?= "Your Search: " . $searchQuery; ?>
+                                <input type="hidden" id="search_result" value="<?= $searchQuery ?>">
                             </div>
+
                             <div class="ml-2">
-                                <div class="btn-group">
-                                    <button type="button" id="sortButton" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">Sorting</button>
+                                <div class="btn-group ">
+                                    <button type="button" id="sortButton" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">Sort By</button>
                                     <div class="dropdown-menu dropdown-menu-right" id="sort">
                                         <a class="dropdown-item" href="#" data-sort="latest">Latest</a>
                                         <a class="dropdown-item" href="#" data-sort="oldest">Oldest</a>
@@ -176,41 +194,11 @@ $cat = $_GET['category'] ?? null;
                                         <a class="dropdown-item" href="#" data-sort="low">Lowest Price</a>
                                     </div>
                                 </div>
-
                             </div>
                         </div>
                     </div>
 
                     <div id="productList" class="row">
-                        <?php
-                        foreach ($allProducts as $product) { ?>
-                            <div class="col-lg-4 col-md-6 col-sm-6 pb-1">
-                                <div class="product-item bg-light mb-4">
-                                    <div class="product-img position-relative overflow-hidden">
-                                        <img class="img-fluid w-100" src="<?php echo $product['watch_img']; ?>" alt="<?php echo $product['watch_name']; ?>">
-                                        <div class="product-action">
-
-                                            <form action="../user_pages/controllers/cart" method="POST" style="display:inline;">
-                                                <input type="hidden" name="product_id" value="<?= htmlspecialchars($product['watch_id']) ?>">
-                                                <button type="submit" class="btn btn-outline-dark btn-square"><i class="fa fa-shopping-cart"></i></button>
-                                            </form>
-
-                                            <a class="btn btn-outline-dark btn-square" href="../user_pages/wishlist.php?id=<?= $product['watch_id'] ?>"><i class="far fa-heart"></i></a>
-                                            <a class="btn btn-outline-dark btn-square" href="../user_pages/product-details.php?id=<?= $product['watch_id'] ?>"><i class="fa fa-search"></i></a>
-
-                                        </div>
-                                    </div>
-                                    <div class="text-center py-4">
-                                        <a class="h6 text-decoration-none text-truncate" href=""><?php echo $product['watch_name']; ?></a>
-                                        <div class="d-flex align-items-center justify-content-center mt-2">
-                                            <h5><?php echo $product['watch_price']; ?> JOD</h5>
-                                            <h6 class="text-muted ml-2"><del><?php echo $product['watch_price'] + rand(10, 20); ?> JOD</del></h6>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                        <?php } ?>
                     </div>
 
                     <div class="col-12">
@@ -236,25 +224,27 @@ $cat = $_GET['category'] ?? null;
     <!-- Shop End -->
 
 
+
+    <?php include("../widgets/chatbot.php"); ?>
     <!-- Footer Start -->
     <?php include '../widgets/footer.php'; ?>
     <!-- Footer End -->
+
+    <script src="./fliteringProducts.js"></script>
+    <script src="./addToCart.js"></script>
 
 
     <!-- Back to Top -->
     <a href="#" class="btn btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a>
 
 
-    <!-- JavaScript Libraries -->
+
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
     <script src="../lib/easing/easing.min.js"></script>
     <script src="../lib/owlcarousel/owl.carousel.min.js"></script>
-    <script src="../mail/jqBootstrapValidation.min.js"></script>
-    <script src="../mail/contact.js"></script>
-    <script src="./fliteringProducts.js"></script>
     <script src="../js/main.js"></script>
-
+    <?php include("./chatbot.php"); ?>
 
 </body>
 

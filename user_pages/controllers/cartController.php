@@ -9,12 +9,12 @@ $cartModel = new cartModel();
 if (!isset($_SESSION['user'])) {
     echo json_encode(['status' => 'error', 'message' => 'User not logged in']);
     exit;
-}
-
-$cartID = $cartModel->getCartId($_SESSION['user']);
-if (!$cartID) {
-    echo json_encode(['status' => 'error', 'message' => 'Unable to retrieve or create a cart']);
-    exit;
+} else {
+    $cartID = $cartModel->getCartId($_SESSION['user']);
+    if (!$cartID) {
+        echo json_encode(['status' => 'error', 'message' => 'Unable to retrieve or create a cart']);
+        exit;
+    }
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -28,16 +28,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     switch ($action) {
-        case 'increase':
-            $newQuantity = $quantity + 1;
-            if ($cartModel->updateProductQuantity($cartID, $product_id, $newQuantity)) {
-                echo json_encode(['status' => 'success', 'message' => 'Quantity increased']);
+        case 'set':
+            if ($cartModel->addProductWithQuantity($cartID, $product_id, $quantity)) {
+                echo json_encode(['status' => 'success', 'message' => 'Quantity set']);
             } else {
-                echo json_encode(['status' => 'error', 'message' => 'Failed to increase quantity']);
+                echo json_encode(['status' => 'error', 'message' => 'Failed to set quantity']);
             }
+            break;
+        case 'increase':
+            if ($cartModel->getWatchQuantity($product_id) <= $quantity) {
+                exit;
+            } else {
+                $newQuantity = $quantity + 1;
+                if ($cartModel->updateProductQuantity($cartID, $product_id, $newQuantity)) {
+                    echo json_encode(['status' => 'success', 'message' => 'Quantity increased']);
+                } else {
+                    echo json_encode(['status' => 'error', 'message' => 'Failed to increase quantity']);
+                }
+            }
+
             break;
 
         case 'decrease':
+
             $newQuantity = max(1, $quantity - 1);
             if ($cartModel->updateProductQuantity($cartID, $product_id, $newQuantity)) {
                 echo json_encode(['status' => 'success', 'message' => 'Quantity decreased']);
@@ -45,11 +58,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 echo json_encode(['status' => 'error', 'message' => 'Failed to decrease quantity']);
             }
             break;
-
         case 'add':
             if ($cartModel->addProductToCart($cartID, $product_id)) {
+
                 echo json_encode(['status' => 'success', 'message' => 'Product added to cart']);
-                header('Location: ../cart.php');
             } else {
                 echo json_encode(['status' => 'error', 'message' => 'Failed to add product to cart']);
             }
